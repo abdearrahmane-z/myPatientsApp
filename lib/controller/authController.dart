@@ -57,6 +57,7 @@ class AuthController extends GetxController {
     final password = passwordController.text;
     print(email);
     print(password);
+    Get.off(() => HomePage());
   }
 
   void signUp() {
@@ -64,6 +65,6 @@ class AuthController extends GetxController {
     final password = passwordController.text;
     print(email);
     print(password);
-    Get.off(HomePage());
+    // Get.off(HomePage());
   }
 }

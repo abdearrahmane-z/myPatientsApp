@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthController controllerA = Get.put(AuthController(), permanent: true);
+    AuthController controllerA = Get.put(AuthController());
     double screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.05),
-                LoginForm(formKey: _formKey, controller: controllerA,),
+                LoginForm(formKey: _formKey, controller: controllerA),
               ],
             ),
           ),

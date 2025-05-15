@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_patients/core/constants/text_styles.dart';
+import 'package:my_patients/view/loginPage/login_page.dart';
+import 'package:my_patients/view/notifyPage/notify_Page.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -10,13 +13,19 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
         "My Patients",
         style: AppTextStyles.appBarText,
       ),
-      centerTitle: true,
+  
       elevation: 0,
       actions: [
         IconButton(
           icon: const Icon(Icons.notifications, color: Colors.black),
           onPressed: () {
-            // Handle notification button press
+            Get.to(() => NotifyPage());
+          },
+        ),
+        IconButton(
+          icon: const Icon(Icons.logout_outlined, color: Colors.black),
+          onPressed: () {
+            Get.offAll(() => LoginPage());
           },
         ),
       ],
