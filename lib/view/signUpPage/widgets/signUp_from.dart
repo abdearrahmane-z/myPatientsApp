@@ -6,16 +6,12 @@ import 'package:my_patients/widgets/my_button.dart';
 import 'package:my_patients/widgets/my_textfield.dart';
 
 class SignUpForm extends StatelessWidget {
-  const SignUpForm({super.key});
-
+  const SignUpForm({super.key, required this.formKey, required this.controller});
+  final GlobalKey<FormState> formKey;
+  final AuthController controller;
   @override
   Widget build(BuildContext context) {
-    // Initialize the AuthController
-    AuthController controller = Get.put(AuthController());
-    final GlobalKey<FormState> _formKey =
-        GlobalKey<FormState>(); // Add form key
     double screenHeight = MediaQuery.of(context).size.height;
-
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: 700), // Set max width to 700
       child: Container(
@@ -35,7 +31,7 @@ class SignUpForm extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         child: Form(
-          key: _formKey, // Attach the form key
+          key: formKey, // Attach the form key
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +62,7 @@ class SignUpForm extends StatelessWidget {
               MyButton(
                 text: 'Sign Up',
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
+                  if (formKey.currentState!.validate()) {
                     // Validate the form
                     controller.signUp();
                   }
@@ -80,10 +76,13 @@ class SignUpForm extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       print('Login tapped');
-                      Get.off(LoginPage()); // Navigate to LoginPage
+                      Get.off(() => LoginPage()); // Navigate to LoginPage
+                      controller.emailController.clear();
+                      controller.passwordController.clear();
+                      controller.confirmPasswordController.clear();
                     },
                     child: const Text(
-                      ' Login',
+                      'Login',
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
