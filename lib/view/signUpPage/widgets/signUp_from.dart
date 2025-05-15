@@ -76,7 +76,7 @@ class SignUpForm extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       print('Login tapped');
-                      Get.off(() => LoginPage()); // Navigate to LoginPage
+                      Get.offAll(() => LoginPage()); // Navigate to LoginPage
                       controller.emailController.clear();
                       controller.passwordController.clear();
                       controller.confirmPasswordController.clear();
