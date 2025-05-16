@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/view/home/home_page.dart';
-import 'package:my_patients/view/loginPage/login_page.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -14,7 +12,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: (context, child) {
+        return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'My Patients',
           theme: ThemeData(
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
           ),
           home:  HomePage(),
         );
-      
+      },
+    );
+
   }
 }
+

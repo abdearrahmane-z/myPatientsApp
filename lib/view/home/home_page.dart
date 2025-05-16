@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_patients/controller/home_controller.dart';
-import 'package:my_patients/view/home/widgets/itemForm.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
+import 'package:my_patients/controller/patients_List_controller.dart';
 import 'package:my_patients/view/home/widgets/custom_appBar.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,15 +10,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
-    HomeController controller = HomeController();
+    HomeController controller = Get.put(HomeController());
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppbar(),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-          
+
             child: Center(
               child: Column(
                 children: controller.myPatients.isNotEmpty
@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
                           alignment: Alignment.center,
                           child: Text(
                             " No Patient Found",
-                            style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, fontFamily: 'Italianno'),
+                            style: TextStyle(fontSize: 50.spMin, fontWeight: FontWeight.bold, fontFamily: 'Italianno'),
                           ),
                         ),
                         SizedBox(height: MediaQuery.of(context).size.height * 0.05),

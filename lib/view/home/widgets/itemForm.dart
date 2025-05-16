@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
 import 'package:my_patients/view/detailPage/detail_page.dart';
 
@@ -24,7 +25,7 @@ class ItemForm extends StatelessWidget {
       },
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          maxWidth: 800,
+          maxWidth: 700,
         ),
         child: Container(
           padding: const EdgeInsets.all(8),
@@ -44,18 +45,18 @@ class ItemForm extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(child: Icon(Icons.person, size: 50)),
+              Expanded(child: Icon(Icons.person, size: 50.spMin)),
               const SizedBox(width: 10),
               Expanded(
                 flex: 3,
                 child: ListTile(
-                  title: Text(name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis)),
-                  subtitle: Text(details, style: TextStyle(fontSize: 14, overflow: TextOverflow.ellipsis)),
+                  title: Text(name, style: TextStyle(fontSize: 16.spMin, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis)),
+                  subtitle: Text(details, style: TextStyle(fontSize: 14.spMin, overflow: TextOverflow.ellipsis)),
                 ),
               ),
-              IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: Colors.red, size: 30,)),
+              IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: Colors.red, size: 30.spMin)),
               const SizedBox(width: 10),
-              Expanded(child: Text(time, style: TextStyle(fontSize: 16))),
+              Expanded(child: Text(time, style: TextStyle(fontSize: 16.spMin))),
 
             ],
           ),

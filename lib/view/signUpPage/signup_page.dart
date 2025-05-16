@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/authController.dart';
 import 'package:my_patients/view/signUpPage/widgets/signUp_from.dart';
@@ -23,7 +24,7 @@ class SignUpPage extends StatelessWidget {
                 Text(
                   "My Patients",
                   style: TextStyle(
-                    fontSize: 50,
+                    fontSize: 50.spMin,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Italianno',
                   ),

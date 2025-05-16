@@ -22,9 +22,9 @@ class SignUpForm extends StatelessWidget {
           color: const Color.fromARGB(255, 255, 255, 255),
           boxShadow: [
             BoxShadow(
-              color: Color.fromARGB(255, 0, 0, 0),
+              color: Color.fromARGB(101, 0, 0, 0),
               spreadRadius: 1,
-              blurRadius: 7,
+              blurRadius: 10,
               offset: const Offset(0, 0),
             ),
           ],
