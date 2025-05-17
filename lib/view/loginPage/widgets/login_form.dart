@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/authController.dart';
 import 'package:my_patients/view/signUpPage/signup_page.dart';
-import 'package:my_patients/widgets/my_button.dart';
-import 'package:my_patients/widgets/my_textfield.dart';
+import 'package:my_patients/view/widgets/my_button.dart';
+import 'package:my_patients/view/widgets/my_textfield.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key, required this.formKey, required this.controller});

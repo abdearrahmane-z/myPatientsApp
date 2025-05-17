@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_patients/core/constants/colors.dart';
+import 'package:my_patients/core/constants/text_styles.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({super.key, required this.id});
@@ -6,14 +8,17 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Patient Details'),
-      ),
-      body: Center(
-        child: Text(
-          'Patient ID: ${id ?? 'Unknown'}',
-          style: TextStyle(fontSize: 24),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Nom Patient', style: AppTextStyles.appBarText),
+          backgroundColor: AppColors.appBarColor,
+        ),
+        body: Center(
+          child: Text(
+            'ID Patient: ${id ?? 'Inconnu'}',
+            style: TextStyle(fontSize: 24),
+          ),
         ),
       ),
     );
