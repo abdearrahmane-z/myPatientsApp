@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({super.key, required this.data});
-  final Map<String, dynamic>? data;
+  const DetailPage({super.key, required this.id});
+  final String? id;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class DetailPage extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          'Patient Name: ${data?['name'] ?? 'Unknown'}',
+          'Patient ID: ${id ?? 'Unknown'}',
           style: TextStyle(fontSize: 24),
         ),
       ),

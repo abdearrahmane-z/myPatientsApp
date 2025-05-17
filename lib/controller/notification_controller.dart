@@ -1,19 +1,19 @@
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get.dart';
+import 'package:my_patients/view/detailPage/detail_page.dart';
 
 class NotificationController  extends GetxController {
 
-  // List<String> notification = [
-  //   "Patient 1: Appointment at 10:00 AM",
-  //   "Patient 2: Appointment at 11:00 AM",
-  //   "Patient 3: Appointment at 12:00 PM",
-  //   "Patient 4: Appointment at 1:00 PM",
-  //   "Patient 5: Appointment at 2:00 PM",
-  // ];
+  Map<String, Map<String, String>> notification = {
+    "PatientID1": {"patient":"Patient 1","title": "Appointment ", "time": "10:00 AM", "date": "2023-10-01"},
+    "PatientID2": {"patient":"Patient 2","title": "Appointment ", "time": "11:00 AM", "date": "2023-10-01"},
+    "PatientID3": {"patient":"Patient 3","title": "Appointment ", "time": "12:00 PM", "date": "2023-10-01"},
+    "PatientID4": {"patient":"Patient 4","title": "Appointment ", "time": "1:00 PM", "date": "2023-10-01"},
+    "PatientID5": {"patient":"Patient 5","title": "Appointment ", "time": "2:00 sPM", "date": "2023-10-01"},
+  };
 
-  List<String> notification = [];
+  void onNotificationTap(String patientID) {
+    Get.to(DetailPage(id: patientID));
+  }
 
-
-
-
-  
+  // List<String> notification = [];
 }

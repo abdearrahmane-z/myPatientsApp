@@ -17,7 +17,7 @@ class ItemForm extends StatelessWidget {
       onTap: () {
         Get.to(
           () => DetailPage(
-            data: data,
+            id: id,
           ),
           transition: Transition.rightToLeft,
           duration: const Duration(milliseconds: 500),

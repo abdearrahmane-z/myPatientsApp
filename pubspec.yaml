@@ -79,6 +79,9 @@ flutter:
     - family: Italianno
       fonts:
         - asset: assets/fonts/Italianno/Italianno-Regular.ttf
+    - family: Ancizar
+      fonts:
+        - asset: assets/fonts/Ancizar/Ancizar.ttf
   #       - asset: fonts/Italianno-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
