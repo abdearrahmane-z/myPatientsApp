@@ -1,29 +1,34 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_patients/core/testPatient.dart';
-import 'package:my_patients/view/home/widgets/itemForm.dart';
-
+import 'package:my_patients/core/testData.dart';
+import 'package:my_patients/model/patients_page_data.dart';
+import 'package:my_patients/view/detailPage/detail_page.dart';
 
 class HomeController extends GetxController {
-   List<Widget> myPatients = patients.map((patient) {
-    return ItemForm(
-      name: patient.name,
-      details: patient.details,
-      time: patient.time,
-      data: patient.data,
-      id: patient.id,
-    );
-  }).toList();
+  var patients = <Patient>[];
+  RxBool isLoading = true.obs;
 
-  void addPatient(Widget patient) {
-    myPatients.add(patient);
-    update();
+  @override
+  void onInit() {
+    super.onInit();
+    loadPatients();
   }
 
-  void removePatient(Widget patient) {
-    patients.remove(patient);
-    update();
+  void loadPatients() {
+    isLoading.value = true;
+    patients =
+        Testdata().json.entries.map((entry) {
+          return Patient.fromJson(entry.value);
+        }).toList();
+    isLoading.value = false;
   }
 
+  // void navigateToDetailPage(String id) {
+  //   Get.to(() => DetailPage(id: id));
+  // }
 
+  void addPatient() {
+    isLoading.value = !isLoading.value;
+    
+  }
+  
 }

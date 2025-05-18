@@ -28,6 +28,30 @@ class AppTextStyles {
         color: Colors.black,
         fontWeight: FontWeight.w300
       );
+  static TextStyle username = TextStyle(
+        fontFamily: 'Ancizar',
+        fontSize: 25.spMin,
+        color: Colors.black,
+      );
+    static TextStyle detailText = TextStyle(
+        fontFamily: 'Ancizar',
+        fontSize: 20.spMin,
+        color: Colors.black,
+      );
+  static TextStyle paragraph = TextStyle(
+        fontFamily: 'Ancizar',
+        fontSize: 15.spMin,
+        color: Colors.black,
+        fontWeight: FontWeight.w300
+      );
+  static TextStyle detailTitle = TextStyle(
+        fontFamily: 'Ancizar',
+        fontSize: 20.spMin,
+        color: Colors.black,
+        fontWeight: FontWeight.w300
+      );
+
+      
 
 
 

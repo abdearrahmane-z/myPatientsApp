@@ -1,6 +1,6 @@
 
 import 'package:get/get.dart';
-import 'package:my_patients/core/testPatient.dart';
+import 'package:my_patients/core/testData.dart';
 
 class DetailPageController extends GetxController {
 

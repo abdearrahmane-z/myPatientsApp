@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 import 'package:my_patients/controller/patients_List_controller.dart';
 import 'package:my_patients/view/home/widgets/custom_appBar.dart';
+import 'package:my_patients/view/home/widgets/itemForm.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,35 +12,35 @@ class HomePage extends StatelessWidget {
     HomeController controller = Get.put(HomeController());
     return SafeArea(
       child: Scaffold(
+        
         appBar: CustomAppbar(),
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-
-            child: Center(
-              child: Column(
-                children: controller.myPatients.isNotEmpty
-                    ? [...controller.myPatients]
-                    : [
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            " No Patient Found",
-                            style: TextStyle(fontSize: 50.spMin, fontWeight: FontWeight.bold, fontFamily: 'Italianno'),
-                          ),
-                        ),
-                        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                        // LoginForm(), // Uncomment this line to include the login form
-                      ],
-              ),
+        body: Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            constraints: BoxConstraints(maxWidth: 700),
+            child: Obx(
+              () => controller.isLoading.value
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : ListView.builder(
+                      itemCount: controller.patients.length,
+                      itemBuilder: (context, index) {
+                        return ItemForm(
+                          patient: controller.patients[index],
+                        );
+                      },
+                    ),
             ),
           ),
+        ),
         
         floatingActionButton: FloatingActionButton(
-          
           backgroundColor: Colors.blue.withOpacity(0.8),
           foregroundColor: Colors.white,
           onPressed: () {
-            // Add your action here
+            controller.addPatient();
           },
           child: Icon(Icons.add),
         ),

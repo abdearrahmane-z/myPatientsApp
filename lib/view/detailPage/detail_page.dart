@@ -1,26 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:my_patients/core/constants/colors.dart';
 import 'package:my_patients/core/constants/text_styles.dart';
+import 'package:my_patients/model/patients_page_data.dart';
+
+import 'widgets/historique.dart';
+import 'widgets/real_time_value.dart';
+import 'widgets/user_info.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({super.key, required this.id});
-  final String? id;
+  const DetailPage({super.key, this.patient});
+  final Patient? patient;
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Nom Patient', style: AppTextStyles.appBarText),
+          title: Text('Détails du Patient', style: AppTextStyles.appBarText),
           backgroundColor: AppColors.appBarColor,
         ),
-        body: Center(
-          child: Text(
-            'ID Patient: ${id ?? 'Inconnu'}',
-            style: TextStyle(fontSize: 24),
-          ),
+        body: Align(
+          alignment: Alignment.topCenter,
+          child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 700),
+                  width: double.infinity,
+                        child: Column(
+                          children: [
+                             UserInfoWidget(screenHeight: screenHeight, patient: patient),
+                             SizedBox(height: screenHeight * 0.02),
+                             RealTimeValue(
+                              tension: patient?.tension ?? 0),
+                              SizedBox(height: screenHeight * 0.02),
+                             HistoriqueWidget(),
+                          ],
+                        ),
+                      ),
+              ),
+            ),
         ),
-      ),
+      )
     );
   }
 }
