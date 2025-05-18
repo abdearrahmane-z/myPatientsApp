@@ -10,18 +10,7 @@ class AppTextStyles {
         color: Colors.black,
         fontWeight: FontWeight.w300
       );
-  static TextStyle notificationTitle = TextStyle(
-        fontFamily: 'Ancizar',
-        fontSize: 20.spMin,
-        color: Colors.black,
-        fontWeight: FontWeight.w300
-      );
-  static TextStyle notificationSubtitle = TextStyle(
-        fontFamily: 'Ancizar',
-        fontSize: 15.spMin,
-        color: Colors.black,
-        fontWeight: FontWeight.w300
-      );
+
   static TextStyle notificationTime = TextStyle(
         fontFamily: 'Ancizar',
         fontSize: 12.spMin,
@@ -47,6 +36,12 @@ class AppTextStyles {
   static TextStyle detailTitle = TextStyle(
         fontFamily: 'Ancizar',
         fontSize: 20.spMin,
+        color: Colors.black,
+        fontWeight: FontWeight.w300
+      );
+  static TextStyle detailSubtitle = TextStyle(
+        fontFamily: 'Ancizar',
+        fontSize: 15.spMin,
         color: Colors.black,
         fontWeight: FontWeight.w300
       );

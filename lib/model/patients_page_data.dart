@@ -30,7 +30,7 @@ class Patient {
       age: json['age'],
       gender: json['gender'],
       antecedent: json['antecedent'],
-      tension: json['tension'].toDouble(),
+      tension: json['RLTtension'].toDouble(),
       data: json['data'],
     );
   }

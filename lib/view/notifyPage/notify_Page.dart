@@ -71,14 +71,14 @@ class NotifyWidget extends StatelessWidget {
           leading: Icon(Icons.notifications, color: AppColors.secondaryColor),
           title: Text(
             notification.patientName,
-            style: AppTextStyles.notificationTitle,
+            style: AppTextStyles.detailTitle,
           ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 notification.notificationMessage,
-                style: AppTextStyles.notificationSubtitle,
+                style: AppTextStyles.detailSubtitle,
               ),
             ],
           ),
@@ -88,7 +88,7 @@ class NotifyWidget extends StatelessWidget {
             children: [
               Text(
                 notification.date,
-                style: AppTextStyles.notificationSubtitle,
+                style: AppTextStyles.detailSubtitle,
               ),
               SizedBox(height: 4.h),
               Text(

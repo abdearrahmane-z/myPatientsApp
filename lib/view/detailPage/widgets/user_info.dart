@@ -57,8 +57,8 @@ class UserInfoWidget extends StatelessWidget {
              Container(
                width: double.infinity,
                alignment: Alignment.topCenter,
-               height: 60.spMin,
-               margin: const EdgeInsets.only(top: 10),
+               height: 50.spMin,
+               margin: const EdgeInsets.only(top: 2),
                child: SingleChildScrollView(
                  child: Text('${patient?.antecedent}', style: AppTextStyles.paragraph),
                )),

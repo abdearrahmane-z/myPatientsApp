@@ -8,8 +8,18 @@ class Testdata {
       "age": 30,
       "gender": "Male",
       "antecedent" : "kgjhgf jhgfkhgfjhghgkjhflj hfkgf khgcj fjgfxj khgmi y fokghjfk gofl",
-      "tension": 120,
-      "data": {"2025-05-05T10:47:17Z":{"tension": 10}}
+      "RLTtension": 120,
+      "data": {"2025-05-05T10:47:17Z":{"tension": 10},
+                "2025-05-05T10:27:17Z":{"tension": 20},
+                "2025-08-05T10:47:17Z":{"tension": 30},
+                "2025-09-05T10:47:17Z":{"tension": 40},
+                "2025-01-05T10:47:17Z":{"tension": 50},
+                "2025-05-05T11:47:17Z":{"tension": 60},
+                "2025-05-05T16:47:17Z":{"tension": 70},
+                "2025-05-05T15:47:17Z":{"tension": 80},
+                "2025-05-05T18:47:17Z":{"tension": 90},
+                "2025-05-05T12:47:17Z":{"tension": 100}
+              }
     },
     "2": {
       "name": "Jane",
@@ -18,7 +28,7 @@ class Testdata {
       "age": 28,
       "gender": "Female",
       "antecedent" : "None",
-      "tension": 140,
+      "RLTtension": 140,
       "data": {"2025-05-05T10:47:17Z":{"tension": 540}}
     },
     "3": {
@@ -28,7 +38,7 @@ class Testdata {
       "age": 35,
       "gender": "Female",
       "antecedent" : "None",
-      "tension": 180,
+      "RLTtension": 180,
       "data": {"2025-05-05T10:47:17Z":{"tension": 180}}
     },
     "4": {
@@ -38,7 +48,7 @@ class Testdata {
       "age": 40,
       "gender": "Male",
       "antecedent" : "None",
-      "tension": 180,
+      "RLTtension": 180,
       "data": {"2025-05-05T10:47:17Z":{"tension": 180}}
     },
     "5": {
@@ -48,7 +58,7 @@ class Testdata {
       "age": 25,
       "gender": "Male",
       "antecedent" : "None",
-      "tension": 100,
+      "RLTtension": 100,
       "data": {"2025-05-05T10:47:17Z":{"tension": 100}}
     },
     "6": {
@@ -58,7 +68,7 @@ class Testdata {
       "age": 28,
       "gender": "Female",
       "antecedent" : "None",
-      "tension": 120,
+      "RLTtension": 120,
       "data": {"2025-05-05T10:47:17Z":{"tension": 240}}
     },
     // Add more patients as needed
