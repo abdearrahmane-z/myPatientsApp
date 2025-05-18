@@ -76,10 +76,10 @@ class Testdata {
   };
 
   Map<String, dynamic> testNotification = {
-    "PatientID1": {"patient":"Patient 1","notificationMessage": "Appointment ", "time": "10:00 AM", "date": "2023-10-01"},
-    "PatientID2": {"patient":"Patient 2","notificationMessage": "Appointment ", "time": "11:00 AM", "date": "2023-10-01"},
-    "PatientID3": {"patient":"Patient 3","notificationMessage": "Appointment ", "time": "12:00 PM", "date": "2023-10-01"},
-    "PatientID4": {"patient":"Patient 4","notificationMessage": "Appointment ", "time": "1:00 PM", "date": "2023-10-01"},
-    "PatientID5": {"patient":"Patient 5","notificationMessage": "Appointment ", "time": "2:00 PM", "date": "2023-10-01"},
+    "1": {"patient":"Patient 1","notificationMessage": "Appointment ", "time": "10:00 AM", "date": "2023-10-01"},
+    "2": {"patient":"Patient 2","notificationMessage": "Appointment ", "time": "11:00 AM", "date": "2023-10-01"},
+    "3": {"patient":"Patient 3","notificationMessage": "Appointment ", "time": "12:00 PM", "date": "2023-10-01"},
+    "4": {"patient":"Patient 4","notificationMessage": "Appointment ", "time": "1:00 PM", "date": "2023-10-01"},
+    "5": {"patient":"Patient 5","notificationMessage": "Appointment ", "time": "2:00 PM", "date": "2023-10-01"},
   };
 }

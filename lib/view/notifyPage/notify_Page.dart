@@ -6,6 +6,8 @@ import 'package:my_patients/core/constants/colors.dart';
 import 'package:my_patients/core/constants/text_styles.dart';
 import 'package:my_patients/model/notify_page_data.dart';
 
+import 'widgets/notify_item.dart';
+
 class NotifyPage extends StatelessWidget {
   const NotifyPage({super.key});
 
@@ -54,51 +56,3 @@ class NotifyPage extends StatelessWidget {
   }
 }
 
-class NotifyWidget extends StatelessWidget {
-  const NotifyWidget({super.key, required this.notification});
-
-  final Notify notification;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => {
-        // Handle tap event
-      },
-      child: Card(
-        margin: EdgeInsets.all(5.spMin),
-        child: ListTile(
-          leading: Icon(Icons.notifications, color: AppColors.secondaryColor),
-          title: Text(
-            notification.patientName,
-            style: AppTextStyles.detailTitle,
-          ),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                notification.notificationMessage,
-                style: AppTextStyles.detailSubtitle,
-              ),
-            ],
-          ),
-          trailing: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                notification.date,
-                style: AppTextStyles.detailSubtitle,
-              ),
-              SizedBox(height: 4.h),
-              Text(
-                notification.time,
-                style: AppTextStyles.notificationTime,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
