@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/authController.dart';
+import 'package:my_patients/core/input_validator.dart';
 import 'package:my_patients/view/signUpPage/signup_page.dart';
 import 'package:my_patients/view/widgets/my_button.dart';
 import 'package:my_patients/view/widgets/my_textfield.dart';
@@ -42,7 +43,7 @@ class LoginForm extends StatelessWidget {
                 labelText: 'Email',
                 hintText: 'Enter your email',
                 textController: controller.emailController,
-                validator: controller.validEmail,
+                validator: InputValidator.validateEmail,
               ),
               SizedBox(height: screenHeight * 0.02),
               MyTextField(
@@ -50,7 +51,7 @@ class LoginForm extends StatelessWidget {
                 hintText: 'Enter your password',
                 obscureText: true,
                 textController: controller.passwordController,
-                validator: controller.validPassword,
+                validator: InputValidator.validatePassword,
               ),
               SizedBox(height: screenHeight * 0.02),
               Align(
