@@ -46,7 +46,7 @@ class AuthController extends GetxController {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("Succès de l'inscription"),
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.green,
         ),
       );
       Get.off(() => HomePage());

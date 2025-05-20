@@ -13,6 +13,8 @@ class NotificationController  extends GetxController {
     super.onInit();
     loadNotifications();
   }
+
+  
   void loadNotifications() {
     isLoading.value = true;
     notifications = Testdata().testNotification.entries.map((entry) {
