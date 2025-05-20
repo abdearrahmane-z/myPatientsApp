@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/view/home/home_page.dart';
+import 'package:my_patients/view/loginPage/login_page.dart';
 
 class AuthController extends GetxController {
   final TextEditingController passwordController = TextEditingController();
@@ -25,7 +26,7 @@ class AuthController extends GetxController {
       isLoading.value = false;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(e.message ?? "Login failed"),
+          content: Text(e.message ?? "La connexion a échoué"),
           backgroundColor: Colors.red,
         ),
       );
@@ -42,12 +43,18 @@ class AuthController extends GetxController {
         password: password,
       );
       isLoading.value = false;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Succès de l'inscription"),
+          backgroundColor: Colors.red,
+        ),
+      );
       Get.off(() => HomePage());
     } on FirebaseAuthException catch (e) {
       isLoading.value = false;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(e.message ?? "Sign up failed"),
+          content: Text(e.message ?? "Échec de l'inscription"),
           backgroundColor: Colors.red,
         ),
       );
@@ -62,15 +69,16 @@ class AuthController extends GetxController {
       isLoading.value = false;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("Password reset email sent"),
+          content: Text("E-mail de réinitialisation du mot de passe envoyé"),
           backgroundColor: Colors.green,
         ),
       );
+      Get.off(() => LoginPage());
     } on FirebaseAuthException catch (e) {
       isLoading.value = false;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(e.message ?? "Recovery failed"),
+          content: Text(e.message ?? "La récupération a échoué"),
           backgroundColor: Colors.red,
         ),
       );
