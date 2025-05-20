@@ -26,9 +26,8 @@ class HomeController extends GetxController {
       data = Map<String, dynamic>.from(result['data'] as Map);
       patients =
           data.entries.map((entry) {
-            Map<String, dynamic> item = entry.value;
-            item["id"] = entry.key;
-            return Patient.fromJson(Map<String, dynamic>.from(item));
+            entry.value["id"] = entry.key;
+            return Patient.fromJson(Map<String, dynamic>.from(entry.value));
           }).toList();
     } else {
       patients.clear();

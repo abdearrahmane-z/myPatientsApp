@@ -2,6 +2,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/patients_List_controller.dart';
+import 'package:my_patients/core/fonctions/show_message.dart';
+import 'package:my_patients/model/patients_data.dart';
 import 'package:my_patients/view/home/home_page.dart';
 
 class AddPatientController extends GetxController {
@@ -19,36 +21,22 @@ class AddPatientController extends GetxController {
 
   void onAdd(BuildContext context) async {
     isLoading.value = true;
-    databaseRef
-        .child("patients")
-        .push()
-        .set({
-          "id": databaseRef.key,
-          "name": nom.text,
-          "lastName": prenom.text,
-          "age": age.text,
-          "gender": sexe.value,
-          "antecedent": antecedent.text,
-          "RLTtension": 0,
-          "data": "",
-        })
-        .then((_) {
-          isLoading.value = false;
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Sent OK'), backgroundColor: Colors.green),
-          );
-          Get.offAll(() => HomePage());
-          hcontroller.loadPatients();
-        })
-        .catchError((error) {
-          isLoading.value = false;
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Failed to send'),
-              backgroundColor: Colors.red,
-            ),
-          );
-          print(error);
-        });
+    if (await Patient.addPatient(
+      nom: nom.text,
+      prenom: prenom.text,
+      sexe: sexe.value,
+      age: int.parse(age.text),
+      antecedent: antecedent.text,
+    )) {
+      isLoading.value = false;
+    
+      // ignore: use_build_context_synchronously
+      ShowMessage.show(context, "sent ok", Colors.green);
+      hcontroller.loadPatients();
+      Get.offAll(()=>HomePage());
+    } else {
+      isLoading.value = false;
+      ShowMessage.show(context, "failed to sent", Colors.red);
+    }
   }
 }

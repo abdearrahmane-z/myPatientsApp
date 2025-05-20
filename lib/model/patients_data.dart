@@ -9,7 +9,7 @@ class Patient {
   double tension;
   String antecedent;
 
-  Map<String, dynamic>? data;
+  var data;
 
   Patient({
     required this.name,
@@ -42,8 +42,7 @@ class Patient {
     return patients;
   }
 
-
-    //get data from firebase
+  //get data from firebase
   static Future<Map<String, dynamic>> getData() async {
     Map<String, dynamic> result = {"status": "", "data": {}, "message": ""};
     try {
@@ -66,5 +65,40 @@ class Patient {
     return result;
   }
 
-  
+  static Future<bool> addPatient({
+    required String nom,
+    required String prenom,
+    required String sexe,
+    required String antecedent,
+    required int age,
+  }) async {
+    final databaseRef = FirebaseDatabase.instance.ref();
+    try {
+      await databaseRef.child("patients").push().set({
+        "id": databaseRef.key,
+        "name": nom,
+        "lastName": prenom,
+        "age": age,
+        "gender": sexe,
+        "antecedent": antecedent,
+        "RLTtension": 0,
+        "data": "",
+      });
+      return true;
+    } catch (error) {
+      print(error);
+      return false;
+    }
+  }
+
+  static Future<bool> removePatient(String patientId) async {
+  final databaseRef = FirebaseDatabase.instance.ref();
+  try {
+    await databaseRef.child("patients").child(patientId).remove();
+    return true;
+  } catch (error) {
+    print('Error removing patient: $error');
+    return false;
+  }
+}
 }

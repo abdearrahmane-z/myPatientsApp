@@ -36,7 +36,7 @@ class DetailPage extends StatelessWidget {
                              RealTimeValue(
                               tension: patient?.tension ?? 0),
                               SizedBox(height: screenHeight * 0.02),
-                             HistoriqueWidget(data: patient!.data ?? {}),
+                             HistoriqueWidget(data: patient!.data==""?{}:patient!.data),
                           ],
                         ),
                       ),
