@@ -4,22 +4,35 @@ import 'package:my_patients/model/patients_data.dart';
 
 class HomeController extends GetxController {
   var patients = <Patient>[];
-  Map<String, dynamic> data = Testdata().json;
+  Map<String, dynamic> data = {};
+  Map<String, dynamic> result = {};
   RxBool isLoading = true.obs;
   RxBool isError = false.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    loadPatients();
+    await loadPatients();
+    print("init");
   }
 
-  void loadPatients() {
+  loadPatients() async {
     isLoading.value = true;
-    patients =
-        Testdata().json.entries.map((entry) {
-          return Patient.fromJson(entry.value);
-        }).toList();
+    result = await Patient.getData();
+    print(result['status']);
+    print(result['data']);
+    // Safely convert and update patients list
+    if (result['data'] != null && result['data'] is Map) {
+      data = Map<String, dynamic>.from(result['data'] as Map);
+      patients =
+          data.entries.map((entry) {
+            Map<String, dynamic> item = entry.value;
+            item["id"] = entry.key;
+            return Patient.fromJson(Map<String, dynamic>.from(item));
+          }).toList();
+    } else {
+      patients.clear();
+    }
     isLoading.value = false;
   }
 
@@ -28,8 +41,6 @@ class HomeController extends GetxController {
   // }
 
   void addPatient() {
-    isLoading.value = !isLoading.value;
-    
+    print(result['message']);
   }
-  
 }

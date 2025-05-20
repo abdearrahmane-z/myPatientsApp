@@ -79,16 +79,20 @@ class AddPatientForm extends StatelessWidget {
             controller: controller.antecedent,
           ),
           SizedBox(height: screenHeight * 0.02),
-          MyButton(
-            text: 'Ajouter',
-            onPressed: () {
-              if (formKey.currentState!.validate()) {
-                controller.onAdd();
-                // Process the data
+          Obx(() {
+              if (controller.isLoading.value) {
+                return const CircularProgressIndicator();
               }
-            },
-          ),
-        ],
+              return MyButton(
+                      text: 'Ajouter',
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          controller.onAdd(context);
+                        }
+                      },
+                    );
+                  }),
+          ],
       ),
     );
   }
