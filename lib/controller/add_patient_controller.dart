@@ -6,8 +6,23 @@ class AddPatientController extends GetxController {
   final TextEditingController prenom = TextEditingController();
   final TextEditingController age = TextEditingController();
   final TextEditingController antecedent = TextEditingController();
-  var sexe = "".obs;
-  var sexeHint = "sexe".obs;
+  var sexe = "Male".obs;
+
+
+  void onAdd() async {
+
+    // final DatabaseReference ref = FirebaseDatabase.instance.ref('patients').push();
+    // await ref.set({
+    //   "id": ref.key,
+    //   "nom": nom.text,
+    //   "prenom": prenom.text,
+    //   "age": age.text,
+    //   "sexe": sexe.value,
+    //   "antecedent": antecedent.text,
+    //   "tension": 0,
+    // });
+  }
+
 
 
 }

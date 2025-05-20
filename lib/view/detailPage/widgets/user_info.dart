@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_patients/core/constants/colors.dart';
 import 'package:my_patients/core/constants/text_styles.dart';
-import 'package:my_patients/model/patients_page_data.dart';
+import 'package:my_patients/model/patients_data.dart';
 
 class UserInfoWidget extends StatelessWidget {
   const UserInfoWidget({

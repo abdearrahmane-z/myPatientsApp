@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:my_patients/controller/patients_List_controller.dart';
 import 'package:my_patients/core/constants/colors.dart';
 import 'package:my_patients/core/constants/text_styles.dart';
-import 'package:my_patients/model/notify_page_data.dart';
-import 'package:my_patients/model/patients_page_data.dart';
+import 'package:my_patients/model/notify_data.dart';
+import 'package:my_patients/model/patients_data.dart';
 import 'package:my_patients/view/detailPage/detail_page.dart';
 
 class NotifyWidget extends StatelessWidget {

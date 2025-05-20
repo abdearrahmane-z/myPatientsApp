@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:my_patients/core/testData.dart';
-import 'package:my_patients/model/patients_page_data.dart';
+import 'package:my_patients/model/patients_data.dart';
 
 class HomeController extends GetxController {
   var patients = <Patient>[];
