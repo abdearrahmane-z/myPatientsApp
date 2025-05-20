@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "572478246082",
+    "firebase_url": "https://mypatient-5b9ac-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mypatient-5b9ac",
+    "storage_bucket": "mypatient-5b9ac.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572478246082:android:ab76739edb213525b77f5b",
+        "android_client_info": {
+          "package_name": "com.example.my_patients"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4XZdh5p9VIzdVOc9BKzYGvFicJd532Fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
