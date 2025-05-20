@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/authController.dart';
+import 'package:my_patients/core/constants/colors.dart';
 import 'package:my_patients/core/input_validator.dart';
+import 'package:my_patients/view/forget_pass_page/forget_pass_page.dart';
 import 'package:my_patients/view/signUpPage/signup_page.dart';
 import 'package:my_patients/view/widgets/my_button.dart';
 import 'package:my_patients/view/widgets/my_textfield.dart';
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({super.key, required this.formKey, required this.controller});
+  const LoginForm({
+    super.key,
+    required this.formKey,
+    required this.controller,
+    required this.context,
+  });
 
   final GlobalKey<FormState> formKey;
   final AuthController controller;
+  final BuildContext context;
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -21,7 +29,7 @@ class LoginForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
         margin: const EdgeInsets.all(30),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 255, 255),
+          color: AppColors.authFormColor.withOpacity(0.8),
           boxShadow: [
             BoxShadow(
               color: Color.fromARGB(101, 0, 0, 0),
@@ -41,14 +49,14 @@ class LoginForm extends StatelessWidget {
             children: [
               MyTextField(
                 labelText: 'Email',
-                hintText: 'Enter your email',
+                hintText: 'Entrez votre email',
                 textController: controller.emailController,
                 validator: InputValidator.validateEmail,
               ),
               SizedBox(height: screenHeight * 0.02),
               MyTextField(
-                labelText: 'Password',
-                hintText: 'Enter your password',
+                labelText: 'Mot de passe',
+                hintText: 'Entrez votre mot de passe',
                 obscureText: true,
                 textController: controller.passwordController,
                 validator: InputValidator.validatePassword,
@@ -58,39 +66,44 @@ class LoginForm extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: GestureDetector(
                   onTap: () {
-                    print('Forgot Password tapped');
+                    Get.to(() => ForgetPassPage());
                   },
                   child: Text(
-                    'Forgot Password?',
+                    'Mot de passe oublié ?',
                     style: TextStyle(color: Colors.blue),
                   ),
                 ),
               ),
               SizedBox(height: screenHeight * 0.02),
-              MyButton(
-                text: 'Login',
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    // Validate the form
-                    controller.login();
-                  }
-                },
+              Obx(
+                () =>
+                    controller.isLoading.value
+                        ? CircularProgressIndicator()
+                        : MyButton(
+                          text: 'Se connecter',
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              // Validate the form
+                              controller.login(context);
+                            }
+                          },
+                        ),
               ),
               SizedBox(height: screenHeight * 0.02),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Don\'t have an account?'),
+                  Text('Vous n\'avez pas de compte ?'),
                   GestureDetector(
                     onTap: () {
-                      print('Sign Up tapped');
+                      // print('Sign Up tapped');
                       Get.to(() => SignUpPage());
-                      controller.emailController.clear(); 
+                      controller.emailController.clear();
                       controller.passwordController.clear();
                       controller.confirmPasswordController.clear();
                     },
                     child: const Text(
-                      'Sign Up',
+                      'S\'inscrire',
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,

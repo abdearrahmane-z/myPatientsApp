@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
                       : ListView.builder(
                         itemCount: controller.patients.length,
                         itemBuilder: (context, index) {
-                          return ItemForm(patient: controller.patients[index]);
+                          return ItemForm(patient: controller.patients[index], con_text: context,);
                         },
                       ),
             ),

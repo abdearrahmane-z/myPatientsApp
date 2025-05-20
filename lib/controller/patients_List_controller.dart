@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_patients/core/testData.dart';
+import 'package:my_patients/core/fonctions/show_message.dart';
 import 'package:my_patients/model/patients_data.dart';
 
 class HomeController extends GetxController {
-  var patients = <Patient>[];
+  var patients = <Patient>[].obs;
   Map<String, dynamic> data = {};
   Map<String, dynamic> result = {};
   RxBool isLoading = true.obs;
@@ -18,28 +19,29 @@ class HomeController extends GetxController {
 
   loadPatients() async {
     isLoading.value = true;
-    result = await Patient.getData();
-    print(result['status']);
-    print(result['data']);
+    Patient.getData().listen((result) {
+      if (result['data'] != null && result['data'] is Map) {
+        data = Map<String, dynamic>.from(result['data'] as Map);
+        patients.value =
+            data.entries.map((entry) {
+              entry.value["id"] = entry.key;
+              return Patient.fromJson(Map<String, dynamic>.from(entry.value));
+            }).toList();
+      } else {
+        patients.clear();
+      }
+      isLoading.value = false;
+    });
     // Safely convert and update patients list
-    if (result['data'] != null && result['data'] is Map) {
-      data = Map<String, dynamic>.from(result['data'] as Map);
-      patients =
-          data.entries.map((entry) {
-            entry.value["id"] = entry.key;
-            return Patient.fromJson(Map<String, dynamic>.from(entry.value));
-          }).toList();
-    } else {
-      patients.clear();
-    }
-    isLoading.value = false;
   }
 
   // void navigateToDetailPage(String id) {
   //   Get.to(() => DetailPage(id: id));
   // }
 
-  void addPatient() {
-    print(result['message']);
+  void onRemove(BuildContext context, String id) async {
+    await Patient.removePatient(id)
+        ? ShowMessage.show(context, "removed", Colors.green)
+        : ShowMessage.show(context, "error remove patient", Colors.red);
   }
 }

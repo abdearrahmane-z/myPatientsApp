@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/authController.dart';
+import 'package:my_patients/core/constants/colors.dart';
 import 'package:my_patients/core/input_validator.dart';
 import 'package:my_patients/view/loginPage/login_page.dart';
 import 'package:my_patients/view/widgets/my_button.dart';
@@ -20,7 +21,7 @@ class SignUpForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
         margin: const EdgeInsets.all(30),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 255, 255),
+          color: AppColors.authFormColor.withOpacity(0.8),
           boxShadow: [
             BoxShadow(
               color: Color.fromARGB(101, 0, 0, 0),
@@ -39,41 +40,44 @@ class SignUpForm extends StatelessWidget {
             children: [
               MyTextField(
                 labelText: 'Email',
-                hintText: 'Enter your email',
+                hintText: 'Entrez votre email',
                 textController: controller.emailController,
                 validator: InputValidator.validateEmail,
               ),
               SizedBox(height: screenHeight * 0.02),
               MyTextField(
-                labelText: 'Password',
-                hintText: 'Enter your password',
+                labelText: 'Mot de passe',
+                hintText: 'Entrez votre mot de passe',
                 obscureText: true,
                 textController: controller.passwordController,
                 validator: InputValidator.validatePassword,
               ),
               SizedBox(height: screenHeight * 0.02),
               MyTextField(
-                labelText: 'Confirm Password',
-                hintText: 'Confirm your password',
+                labelText: 'Confirmez mot de passe',
+                hintText: 'Confirmez votre mot de passe',
                 obscureText: true,
                 textController: controller.confirmPasswordController,
                 validator: (value) => InputValidator.validateConfirmPassword(value, controller.passwordController.text),
               ),
               SizedBox(height: screenHeight * 0.02),
-              MyButton(
-                text: 'Sign Up',
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    // Validate the form
-                    controller.signUp();
-                  }
-                },
+              Obx(
+                ()=> controller.isLoading.value?CircularProgressIndicator():
+                MyButton(
+                  text: 'S\'inscrire',
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      // Validate the form
+                      controller.signUp(context);
+                    }
+                  },
+                ),
               ),
               SizedBox(height: screenHeight * 0.02),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('I have an account?'),
+                  Text('J\'ai un compte ? '),
                   GestureDetector(
                     onTap: () {
                       print('Login tapped');
@@ -83,7 +87,7 @@ class SignUpForm extends StatelessWidget {
                       controller.confirmPasswordController.clear();
                     },
                     child: const Text(
-                      'Login',
+                      'Se connecter',
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,

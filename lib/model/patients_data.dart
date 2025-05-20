@@ -9,7 +9,7 @@ class Patient {
   double tension;
   String antecedent;
 
-  var data;
+  var historique;
 
   Patient({
     required this.name,
@@ -19,7 +19,7 @@ class Patient {
     required this.gender,
     required this.antecedent,
     required this.tension,
-    this.data,
+    this.historique,
   });
 
   factory Patient.fromJson(Map<String, dynamic> json) {
@@ -31,7 +31,7 @@ class Patient {
       gender: json['gender'],
       antecedent: json['antecedent'],
       tension: json['RLTtension'].toDouble(),
-      data: json['data'],
+      historique: json['historique'],
     );
   }
   static List<Patient> listPatients(Map<String, dynamic> json) {
@@ -43,26 +43,27 @@ class Patient {
   }
 
   //get data from firebase
-  static Future<Map<String, dynamic>> getData() async {
-    Map<String, dynamic> result = {"status": "", "data": {}, "message": ""};
-    try {
-      final ref = FirebaseDatabase.instance.ref('patients');
-      final snapshot = await ref.get();
-
-      if (snapshot.exists) {
-        final data = Map<String, dynamic>.from(snapshot.value as Map);
-        result['data'] = data;
-        result['status'] = "success";
-      } else {
-        result['status'] = "error";
-        result['message'] = "No patients found";
-      }
-    } catch (e) {
-      print('Error fetching patients: $e');
-      result['status'] = "error";
-      result['message'] = e.toString();
+  static Stream<Map<String, dynamic>> getData() {
+    final ref = FirebaseDatabase.instance.ref('patients');
+    return ref.onValue.map((event) {
+    if (event.snapshot.exists) {
+      final data = Map<String, dynamic>.from(event.snapshot.value as Map);
+      // Reverse to show last added first
+      final reversedEntries = data.entries.toList().reversed;
+      final reversedMap = {for (var e in reversedEntries) e.key: e.value};
+      return {
+        "status": "success",
+        "data": reversedMap,
+        "message": "",
+      };
+    } else {
+      return {
+        "status": "error",
+        "data": {},
+        "message": "No patients found",
+      };
     }
-    return result;
+  });
   }
 
   static Future<bool> addPatient({
@@ -82,7 +83,7 @@ class Patient {
         "gender": sexe,
         "antecedent": antecedent,
         "RLTtension": 0,
-        "data": "",
+        "historique": "",
       });
       return true;
     } catch (error) {
@@ -100,5 +101,39 @@ class Patient {
     print('Error removing patient: $error');
     return false;
   }
+}
+
+static Stream<Map<String, dynamic>> testStream(String patientId){
+  final ref = FirebaseDatabase.instance.ref('patients/$patientId');
+    return ref.onValue.map((event) {
+    if (event.snapshot.exists) {
+      final data = Map<String, dynamic>.from(event.snapshot.value as Map);
+      return {
+        "status": "success",
+        "data": data,
+        "message": "",
+      };
+    } else {
+      return {
+        "status": "error",
+        "data": {},
+        "message": "No patients found",
+      };
+    }
+  });
+  
+
+
+}
+static Stream<Patient?> listenToPatientById(String patientId) {
+  final ref = FirebaseDatabase.instance.ref('patients/$patientId');
+  return ref.onValue.map((event) {
+    if (event.snapshot.exists) {
+      final data = Map<String, dynamic>.from(event.snapshot.value as Map);
+      return Patient.fromJson(data);
+    } else {
+      return null;
+    }
+  });
 }
 }
