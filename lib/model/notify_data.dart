@@ -18,45 +18,50 @@ class Notify {
 
   factory Notify.fromJson(Map<String, dynamic> json) {
     return Notify(
-      id: json['id'],
+      id: json['patientId'],
       patientName: json['patient'],
       notificationMessage: json['notificationMessage'],
       date: json['date'],
       time: json['time'],
     );
   }
-  static List<Notify> ListNotificationFromJson(Map<String, dynamic> json) {
+  static List<Notify> listNotificationFromJson(Map<String, dynamic> json) {
     List<Notify> notifications = [];
     json.forEach((key, value) {
-      value['id'] = key; // Add the key as the id
-      print(value);
+      DateTime date = DateTime.parse(key);
+      String formattedDate = '${date.day}-${date.month}-${date.year}';
+      String formattedTime = '${date.hour}:${date.minute}';
+      value['date'] = formattedDate; 
+      value['time'] = formattedTime; 
       notifications.add(Notify.fromJson(value));
     });
     return notifications;
   }
 
   //get data from firebase
-  static Future<Map<String, dynamic>> getNotification() async {
-    Map<String, dynamic> result = {"status": "", "data": {}, "message": ""};
-    try {
-      final ref = FirebaseDatabase.instance.ref('notifications');
-      final snapshot = await ref.get();
+  static Stream<Map<String, dynamic>> getNotification() {
 
-      if (snapshot.exists) {
-        final data = Map<String, dynamic>.from(snapshot.value as Map);
-        result['data'] = data;
-        result['status'] = "success";
-      } else {
-        result['status'] = "error";
-        result['message'] = "No notifications found";
-      }
-    } catch (e) {
-      print('Error fetching notifications: $e');
-      result['status'] = "error";
-      result['message'] = e.toString();
+    final ref = FirebaseDatabase.instance.ref('notifications');
+        return ref.onValue.map((event) {
+    if (event.snapshot.exists) {
+      final data = Map<String, dynamic>.from(event.snapshot.value as Map);
+      // Reverse to show last added first
+      final reversedEntries = data.entries.toList().reversed;
+      final reversedMap = {for (var e in reversedEntries) e.key: e.value};
+      return {
+        "status": "success",
+        "data": reversedMap,
+        "message": "",
+      };
+    } else {
+      return {
+        "status": "error",
+        "data": {},
+        "message": "No patients found",
+      };
     }
-    return result;
-  }
+  });
+}
 
 
 

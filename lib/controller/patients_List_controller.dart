@@ -6,7 +6,6 @@ import 'package:my_patients/model/patients_data.dart';
 class HomeController extends GetxController {
   var patients = <Patient>[].obs;
   Map<String, dynamic> data = {};
-  Map<String, dynamic> result = {};
   RxBool isLoading = true.obs;
   RxBool isError = false.obs;
 
@@ -18,8 +17,9 @@ class HomeController extends GetxController {
   }
 
   loadPatients() async {
-    isLoading.value = true;
+    // isLoading.value = true;
     Patient.getData().listen((result) {
+      isLoading.value = true;
       if (result['data'] != null && result['data'] is Map) {
         data = Map<String, dynamic>.from(result['data'] as Map);
         patients.value =
@@ -32,6 +32,7 @@ class HomeController extends GetxController {
       }
       isLoading.value = false;
     });
+    
     // Safely convert and update patients list
   }
 
@@ -41,7 +42,7 @@ class HomeController extends GetxController {
 
   void onRemove(BuildContext context, String id) async {
     await Patient.removePatient(id)
-        ? ShowMessage.show(context, "removed", Colors.green)
-        : ShowMessage.show(context, "error remove patient", Colors.red);
+        ? ShowMessage.show(context, "Supprimé avec succès", Colors.green)
+        : ShowMessage.show(context, "erreur supprimer le patient", Colors.red);
   }
 }

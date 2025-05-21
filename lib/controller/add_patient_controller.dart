@@ -31,12 +31,12 @@ class AddPatientController extends GetxController {
       isLoading.value = false;
     
       // ignore: use_build_context_synchronously
-      ShowMessage.show(context, "sent ok", Colors.green);
+      ShowMessage.show(context, "Patient ajouté avec succès", Colors.green);
       hcontroller.loadPatients();
       Get.offAll(()=>Home());
     } else {
       isLoading.value = false;
-      ShowMessage.show(context, "failed to sent", Colors.red);
+      ShowMessage.show(context, "Échec de l'ajout du patient", Colors.red);
     }
   }
 }

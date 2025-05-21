@@ -26,7 +26,7 @@ class AuthController extends GetxController {
       isLoading.value = false;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(e.message ?? "La connexion a échoué"),
+          content: Text("La connexion a échoué"),
           backgroundColor: Colors.red,
         ),
       );
@@ -54,7 +54,7 @@ class AuthController extends GetxController {
       isLoading.value = false;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(e.message ?? "Échec de l'inscription"),
+          content: Text("Échec de l'inscription"),
           backgroundColor: Colors.red,
         ),
       );
@@ -78,7 +78,7 @@ class AuthController extends GetxController {
       isLoading.value = false;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(e.message ?? "La récupération a échoué"),
+          content: Text("La récupération a échoué"),
           backgroundColor: Colors.red,
         ),
       );
