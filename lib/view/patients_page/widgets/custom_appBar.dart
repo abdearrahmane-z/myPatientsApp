@@ -13,22 +13,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
         "My Patients",
         style: AppTextStyles.appBarText,
       ),
-  
       elevation: 0,
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.notifications, color: Colors.black),
-          onPressed: () {
-            Get.to(() => NotifyPage());
-          },
-        ),
-        IconButton(
-          icon: const Icon(Icons.logout_outlined, color: Colors.black),
-          onPressed: () {
-            Get.offAll(() => LoginPage());
-          },
-        ),
-      ],
     );
   }
 

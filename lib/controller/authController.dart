@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_patients/view/home/home_page.dart';
+import 'package:my_patients/view/home/HomePage.dart';
 import 'package:my_patients/view/loginPage/login_page.dart';
 
 class AuthController extends GetxController {
@@ -21,7 +21,7 @@ class AuthController extends GetxController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       isLoading.value = false;
-      Get.off(() => HomePage());
+      Get.off(() => Home());
     } on FirebaseAuthException catch (e) {
       isLoading.value = false;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -49,7 +49,7 @@ class AuthController extends GetxController {
           backgroundColor: Colors.green,
         ),
       );
-      Get.off(() => HomePage());
+      Get.off(() => Home());
     } on FirebaseAuthException catch (e) {
       isLoading.value = false;
       ScaffoldMessenger.of(context).showSnackBar(

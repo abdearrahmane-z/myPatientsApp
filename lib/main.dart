@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/core/notification/notify_service.dart';
-import 'package:my_patients/view/home/home_page.dart';
+import 'package:my_patients/view/home/HomePage.dart';
+import 'package:my_patients/view/patients_page/patients_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -17,7 +18,8 @@ void main() async {
     print("Firebase initialization error: $e");
   }
   NotifyService().initNotify();
-  // await FirebaseNotify().initNotify();
+  NotifyService().initNotiication();
+
   FirebaseMessaging.instance.subscribeToTopic("allUsers");
   runApp(const MyApp());
 }
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'My Patients',
           theme: ThemeData(primarySwatch: Colors.blue),
-          home: HomePage(),
+          home: Home(),
         );
       },
     );

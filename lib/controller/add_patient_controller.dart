@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:my_patients/controller/patients_List_controller.dart';
 import 'package:my_patients/core/fonctions/show_message.dart';
 import 'package:my_patients/model/patients_data.dart';
-import 'package:my_patients/view/home/home_page.dart';
+import 'package:my_patients/view/home/HomePage.dart';
 
 class AddPatientController extends GetxController {
   final TextEditingController nom = TextEditingController();
@@ -33,7 +33,7 @@ class AddPatientController extends GetxController {
       // ignore: use_build_context_synchronously
       ShowMessage.show(context, "sent ok", Colors.green);
       hcontroller.loadPatients();
-      Get.offAll(()=>HomePage());
+      Get.offAll(()=>Home());
     } else {
       isLoading.value = false;
       ShowMessage.show(context, "failed to sent", Colors.red);

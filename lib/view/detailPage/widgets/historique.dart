@@ -26,7 +26,7 @@ class HistoriqueWidget extends StatelessWidget {
             color: Colors.grey[200],
           ),
           child:
-              data.entries.isEmpty
+              data.isEmpty
                   ? Center(
                     child: Text(
                       'Aucune donnée disponible',

@@ -125,15 +125,15 @@ static Stream<Map<String, dynamic>> testStream(String patientId){
 
 
 }
-static Stream<Patient?> listenToPatientById(String patientId) {
-  final ref = FirebaseDatabase.instance.ref('patients/$patientId');
-  return ref.onValue.map((event) {
-    if (event.snapshot.exists) {
-      final data = Map<String, dynamic>.from(event.snapshot.value as Map);
-      return Patient.fromJson(data);
-    } else {
-      return null;
-    }
-  });
-}
+// static Stream<Patient?> listenToPatientById(String patientId) {
+//   final ref = FirebaseDatabase.instance.ref('patients/$patientId');
+//   return ref.onValue.map((event) {
+//     if (event.snapshot.exists) {
+//       final data = Map<String, dynamic>.from(event.snapshot.value as Map);
+//       return Patient.fromJson(data);
+//     } else {
+//       return null;
+//     }
+//   });
+// }
 }

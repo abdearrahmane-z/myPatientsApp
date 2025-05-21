@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/patients_List_controller.dart';
-import 'package:my_patients/view/add_patient/add_patient.dart';
-import 'package:my_patients/view/home/widgets/custom_appBar.dart';
-import 'package:my_patients/view/home/widgets/itemForm.dart';
+import 'package:my_patients/view/patients_page/widgets/custom_appBar.dart';
+import 'package:my_patients/view/patients_page/widgets/itemForm.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class PatientsPage extends StatelessWidget {
+  const PatientsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    HomeController controller = Get.put(HomeController());
+    HomeController controller = Get.find();
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppbar(),
@@ -31,15 +30,6 @@ class HomePage extends StatelessWidget {
                       ),
             ),
           ),
-        ),
-
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.blue.withOpacity(0.8),
-          foregroundColor: Colors.white,
-          onPressed: () {
-            Get.to(() => AddPatient());
-          },
-          child: Icon(Icons.add),
         ),
       ),
     );

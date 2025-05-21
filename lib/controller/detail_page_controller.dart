@@ -14,7 +14,8 @@ class DetailPageController extends GetxController {
         patienJson["id"] = id;
         Patient patient = Patient.fromJson(patienJson);
         rlTension.value = patient.tension;
-        historique.value = patient.historique ?? {};
+        historique.value = patient.historique == ""?{}:patient.historique;
+
       }
     });
   }
