@@ -16,8 +16,9 @@ void main() async {
   } catch (e) {
     print("Firebase initialization error: $e");
   }
+  NotifyService().initNotify();
   // await FirebaseNotify().initNotify();
-  // FirebaseMessaging.instance.subscribeToTopic("allUsers");
+  FirebaseMessaging.instance.subscribeToTopic("allUsers");
   runApp(const MyApp());
 }
 
