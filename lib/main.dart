@@ -1,11 +1,13 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_patients/core/notification/notify_service.dart';
 import 'package:my_patients/view/home/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main ()async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
     await Firebase.initializeApp(
@@ -14,6 +16,8 @@ void main ()async {
   } catch (e) {
     print("Firebase initialization error: $e");
   }
+  // await FirebaseNotify().initNotify();
+  // FirebaseMessaging.instance.subscribeToTopic("allUsers");
   runApp(const MyApp());
 }
 
@@ -29,14 +33,10 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'My Patients',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home:  HomePage(),
+          theme: ThemeData(primarySwatch: Colors.blue),
+          home: HomePage(),
         );
       },
     );
-
   }
 }
-

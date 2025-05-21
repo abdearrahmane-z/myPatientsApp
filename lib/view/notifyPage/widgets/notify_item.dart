@@ -19,15 +19,13 @@ class NotifyWidget extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Get.to(
-          () {
-            Map<String, dynamic> dictPatient = homeController.data[notification.id];
-            Patient patient = Patient.fromJson(dictPatient);
-            return DetailPage(
-              patient: patient,
-            );
-          },
-        );
+        // Map<String, dynamic> dictPatient = homeController.data[notification.id];
+        // Patient patient = Patient.fromJson(dictPatient);
+        // Get.to(
+        //   () => DetailPage(
+        //       patient: patient,
+        //     )
+        // );
       },
       child: Card(
         margin: EdgeInsets.all(5.spMin),
