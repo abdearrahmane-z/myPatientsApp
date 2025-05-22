@@ -25,7 +25,7 @@ class ItemForm extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
-          color: AppColors.appBarColor.withOpacity(0.1),
+          color: AppColors.appBarColor,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -39,14 +39,16 @@ class ItemForm extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(child: Icon(Icons.person, size: 50.spMin)),
+            Expanded(child: Icon(Icons.person, size: 50.spMin, color: AppColors.secondaryColor,)),
             const SizedBox(width: 10),
             Expanded(
               flex: 3,
               child: ListTile(
                 title: Text(
+                  
                   '${patient.name} ${patient.lastName}',
                   style: TextStyle(
+                    color: AppColors.secondaryColor,
                     fontSize: 16.spMin,
                     fontWeight: FontWeight.bold,
                     overflow: TextOverflow.ellipsis,
@@ -55,6 +57,7 @@ class ItemForm extends StatelessWidget {
                 subtitle: Text(
                   'Age: ${patient.age.toString()}',
                   style: TextStyle(
+                    color: AppColors.secondaryColor,
                     fontSize: 14.spMin,
                     overflow: TextOverflow.ellipsis,
                   ),

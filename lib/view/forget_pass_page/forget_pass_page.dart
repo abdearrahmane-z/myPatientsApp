@@ -18,7 +18,19 @@ class ForgetPassPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Mot de passe oublié", style: AppTextStyles.appBarText),
+          title: Row(
+            children: [
+              Image.asset(
+                'assets/images/logo.png', // Make sure this path is correct and added in pubspec.yaml
+                height: 40,
+              ),
+              const SizedBox(width: 10),
+              Text(
+                "Mes patients",
+                style: AppTextStyles.appBarText,
+              ),
+            ],
+          ),
           backgroundColor: AppColors.appBarColor,
         ),
         body: Stack(

@@ -8,6 +8,7 @@ import 'package:my_patients/view/loginPage/login_page.dart';
 import 'package:my_patients/view/notifyPage/notify_Page.dart';
 import 'package:my_patients/view/patients_page/patients_page.dart';
 import 'package:my_patients/view/widgets/my_button.dart';
+import 'package:my_patients/view/widgets/my_button2.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -19,19 +20,23 @@ class Home extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("My patients", style: AppTextStyles.appBarText),
+          title: Row(
+            children: [
+              Image.asset(
+                'assets/images/logo.png', // Make sure this path is correct and added in pubspec.yaml
+                height: 40,
+              ),
+              const SizedBox(width: 10),
+              Text(
+                "Mes patients",
+                style: AppTextStyles.appBarText,
+              ),
+            ],
+          ),
           backgroundColor: AppColors.appBarColor,
           actions: [IconButton(icon: Icon(Icons.logout), color: Colors.white,onPressed: ()=>Get.offAll(()=>LoginPage()),)],
         ),
-        body: Stack(
-          children: [
-            Positioned.fill(
-              child: Image.asset(
-                'assets/images/bg2.jpg', // Make sure this path is correct and added in pubspec.yaml
-                fit: BoxFit.cover,
-              ),
-            ),
-            Center(
+        body: Center(
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxHeight: 700),
                 child: Padding(
@@ -39,21 +44,21 @@ class Home extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MyButton(
+                      MyButton2(
                         text: "List des patients",
                         onPressed: () {
                           Get.to(() => PatientsPage());
                         },
                       ),
                       SizedBox(height: screenHeigh * 0.02),
-                      MyButton(
+                      MyButton2(
                         text: "Ajouter un patient",
                         onPressed: () {
                           Get.to(() => AddPatient());
                         },
                       ),
                       SizedBox(height: screenHeigh * 0.02),
-                      MyButton(
+                      MyButton2(
                         text: "Notification",
                         onPressed: () {
                           Get.to(() => NotifyPage());
@@ -65,8 +70,6 @@ class Home extends StatelessWidget {
                 ),
               ),
             ),
-          ],
-        ),
       ),
     );
   }

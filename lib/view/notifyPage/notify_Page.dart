@@ -17,10 +17,22 @@ class NotifyPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Notifications', style: AppTextStyles.appBarText),
-          backgroundColor: AppColors.appBarColor.withOpacity(0.8),
+          foregroundColor: AppColors.secondaryColor,
+          title: Row(
+            children: [
+              Image.asset(
+                'assets/images/logo.png', // Make sure this path is correct and added in pubspec.yaml
+                height: 40,
+              ),
+              const SizedBox(width: 10),
+              Text(
+                "Mes Notifications",
+                style: AppTextStyles.appBarText,
+              ),
+            ],
+          ),
+          backgroundColor: AppColors.appBarColor,
         ),
-        backgroundColor: AppColors.backgroundColor,
         body: Align(
           alignment: Alignment.topCenter,
           child: ConstrainedBox(

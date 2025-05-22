@@ -23,8 +23,22 @@ class DetailPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Détails du Patient', style: AppTextStyles.appBarText),
+          foregroundColor: AppColors.secondaryColor,
+          title: Row(
+            children: [
+              Image.asset(
+                'assets/images/logo.png', // Make sure this path is correct and added in pubspec.yaml
+                height: 40,
+              ),
+              const SizedBox(width: 10),
+              Text(
+                "Mon patient",
+                style: AppTextStyles.appBarText,
+              ),
+            ],
+          ),
           backgroundColor: AppColors.appBarColor,
+        
         ),
         body: Align(
           alignment: Alignment.topCenter,

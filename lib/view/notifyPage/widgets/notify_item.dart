@@ -32,6 +32,7 @@ class NotifyWidget extends StatelessWidget {
         );
       },
       child: Card(
+        color: AppColors.appBarColor,
         margin: EdgeInsets.all(5.spMin),
         child: ListTile(
           leading: Icon(Icons.notifications, color: AppColors.secondaryColor),

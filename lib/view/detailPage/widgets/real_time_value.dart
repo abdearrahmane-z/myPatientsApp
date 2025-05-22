@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_patients/core/constants/colors.dart';
+import 'package:my_patients/core/constants/text_styles.dart';
 
 class RealTimeValue extends StatelessWidget {
   const RealTimeValue({super.key, required this.tension});
@@ -22,11 +23,11 @@ class RealTimeValue extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: AppColors.appBarColor.withOpacity(0.5),
+            color: AppColors.appBarColor.withOpacity(0.0),
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
+                color: AppColors.appBarColor.withOpacity(0.8),
                 spreadRadius: 2,
                 blurRadius: 5,
                 offset: const Offset(0, 1), // changes position of shadow
@@ -37,7 +38,7 @@ class RealTimeValue extends StatelessWidget {
           child:
               Text(
                 '$tension mmHg',
-                style: TextStyle(fontSize: 16),
+                style: AppTextStyles.detailText,
               ),
             
         ),

@@ -35,9 +35,9 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'My Patients',
+          title: 'Mes Patients',
           theme: ThemeData(primarySwatch: Colors.blue),
-          home: Home(),
+          home: LoginPage(),
         );
       },
     );

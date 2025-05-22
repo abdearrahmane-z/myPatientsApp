@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     SizedBox(height: screenHeight * 0.02),
                     Text(
-                      "My Patients",
+                      "Mes Patients",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 50,
