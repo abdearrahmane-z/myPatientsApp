@@ -23,17 +23,9 @@ class RealTimeValue extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: AppColors.appBarColor.withOpacity(0.0),
+            color: AppColors.appBarColor,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.appBarColor.withOpacity(0.8),
-                spreadRadius: 2,
-                blurRadius: 5,
-                offset: const Offset(0, 1), // changes position of shadow
-              ),
-              
-            ],
+            
           ),
           child:
               Text(

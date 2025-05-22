@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/patients_List_controller.dart';
-import 'package:my_patients/view/patients_page/widgets/custom_appBar.dart';
+import 'package:my_patients/view/widgets/custom_appBar.dart';
 import 'package:my_patients/view/patients_page/widgets/itemForm.dart';
 
 import '../../core/constants/colors.dart';
@@ -38,16 +38,25 @@ class PatientsPage extends StatelessWidget {
           child: Container(
             constraints: BoxConstraints(maxWidth: 700),
             child: Obx(
-              () =>
-                  controller.isLoading.value
-                      ? Center(child: CircularProgressIndicator())
-                      : ListView.builder(
-                        itemCount: controller.patients.length,
-                        itemBuilder: (context, index) {
-                          return ItemForm(patient: controller.patients[index], con_text: context,);
-                        },
-                      ),
-            ),
+      () => controller.isLoading.value
+          ? Center(child: CircularProgressIndicator())
+          : controller.patients.isEmpty
+              ? Center(
+                  child: Text(
+                    'Aucune patient trouvée',
+                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: controller.patients.length,
+                  itemBuilder: (context, index) {
+                    return ItemForm(
+                      patient: controller.patients[index],
+                      con_text: context,
+                    );
+                  },
+                ),
+    ),
           ),
         ),
       ),

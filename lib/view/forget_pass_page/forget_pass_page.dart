@@ -18,6 +18,7 @@ class ForgetPassPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          foregroundColor: AppColors.secondaryColor,
           title: Row(
             children: [
               Image.asset(

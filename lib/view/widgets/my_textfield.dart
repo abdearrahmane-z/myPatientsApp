@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_patients/core/constants/colors.dart';
 
 class MyTextField extends StatelessWidget {
   final String labelText;
@@ -22,6 +23,7 @@ class MyTextField extends StatelessWidget {
       controller: textController,
       decoration: InputDecoration(
         filled: true,
+        fillColor: AppColors.inputColor,
         labelText: labelText,
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.white),

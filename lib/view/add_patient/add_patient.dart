@@ -17,9 +17,22 @@ class AddPatient extends StatelessWidget {
     AddPatientController controller = Get.put(AddPatientController());
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Add Patient', style: AppTextStyles.appBarText),
-          backgroundColor: AppColors.appBarColor.withOpacity(0.8),
+        appBar:AppBar(
+          foregroundColor: AppColors.secondaryColor,
+          title: Row(
+            children: [
+              Image.asset(
+                'assets/images/logo.png', // Make sure this path is correct and added in pubspec.yaml
+                height: 40,
+              ),
+              const SizedBox(width: 10),
+              Text(
+                "Ajouter un patient",
+                style: AppTextStyles.appBarText,
+              ),
+            ],
+          ),
+          backgroundColor: AppColors.appBarColor,
         ),
         body: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: 700),

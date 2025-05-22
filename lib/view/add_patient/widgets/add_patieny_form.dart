@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_patients/core/constants/colors.dart';
 
 import '../../../controller/add_patient_controller.dart';
 import '../../../core/input_validator.dart';
-import '../../widgets/my_button.dart';
+import '../../widgets/my_button2.dart';
 import '../../widgets/my_textfield.dart';
 
 class AddPatientForm extends StatelessWidget {
@@ -72,6 +73,8 @@ class AddPatientForm extends StatelessWidget {
             maxLines: 3,
             validator: InputValidator.validateMedicalHistory,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: AppColors.inputColor,
               labelText: 'Antécédents',
               hintText: 'Antécédents',
               border: OutlineInputBorder(),
@@ -83,7 +86,7 @@ class AddPatientForm extends StatelessWidget {
               if (controller.isLoading.value) {
                 return const CircularProgressIndicator();
               }
-              return MyButton(
+              return MyButton2(
                       text: 'Ajouter',
                       onPressed: () {
                         if (formKey.currentState!.validate()) {

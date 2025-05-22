@@ -38,27 +38,32 @@ class NotifyPage extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: 700),
             child: Obx(
-              () => notificationController.isLoading.value
+      () => notificationController.isLoading.value
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : notificationController.isError.value
+              ? Center(
+                  child: Text(
+                    'Error loading notifications',
+                  ),
+                )
+              : notificationController.notifications.isEmpty
                   ? Center(
-                      child: CircularProgressIndicator(),
+                      child: Text(
+                        'Aucune notification trouvée',
+                        style: TextStyle(fontSize: 18, color: Colors.grey),
+                      ),
                     )
-                  : notificationController.isError.value
-                      ? Center(
-                          child: Text(
-                            'Error loading notifications',
-                            // style: AppTextStyles.errorText,
-                          ),
-                        )
-                      : ListView.builder(
-                          itemCount: notificationController.notifications.length,
-                          itemBuilder: (context, index) {
-                            return NotifyWidget(
-                              notification:
-                                  notificationController.notifications[index],
-                            );
-                          },
-                        ),
-            ),
+                  : ListView.builder(
+                      itemCount: notificationController.notifications.length,
+                      itemBuilder: (context, index) {
+                        return NotifyWidget(
+                          notification: notificationController.notifications[index],
+                        );
+                      },
+                    ),
+    ),
           ),
         ),
       )

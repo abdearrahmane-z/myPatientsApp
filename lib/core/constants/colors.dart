@@ -7,4 +7,5 @@ class AppColors {
   static const Color errorColor = Color(0xFFB00020);
   static const Color authFormColor = Colors.white;
   static const Color icon = Colors.white;
+  static const Color inputColor = Colors.white;
 }
