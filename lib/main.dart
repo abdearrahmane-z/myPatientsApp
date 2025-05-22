@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'My Patients',
           theme: ThemeData(primarySwatch: Colors.blue),
-          home: LoginPage(),
+          home: Home(),
         );
       },
     );

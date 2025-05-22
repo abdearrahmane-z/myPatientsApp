@@ -7,7 +7,7 @@ class AppTextStyles {
   static TextStyle appBarText = TextStyle(
         fontFamily: 'Italianno',
         fontSize: 35.spMin,
-        color: Colors.black,
+        color: Colors.white,
         fontWeight: FontWeight.w300
       );
 
