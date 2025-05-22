@@ -21,15 +21,7 @@ class SignUpForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
         margin: const EdgeInsets.all(30),
         decoration: BoxDecoration(
-          color: AppColors.authFormColor.withOpacity(0.8),
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromARGB(101, 0, 0, 0),
-              spreadRadius: 1,
-              blurRadius: 10,
-              offset: const Offset(0, 0),
-            ),
-          ],
+        
           borderRadius: BorderRadius.circular(15),
         ),
         child: Form(
@@ -77,7 +69,7 @@ class SignUpForm extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('J\'ai un compte ? '),
+                  Text('J\'ai un compte ? ', style: TextStyle(color:Colors.white),),
                   GestureDetector(
                     onTap: () {
                       print('Login tapped');

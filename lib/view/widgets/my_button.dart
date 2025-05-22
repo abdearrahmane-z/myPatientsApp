@@ -18,9 +18,9 @@ class MyButton extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              backgroundColor: const Color(0x0febebeb),
+              backgroundColor: Colors.red,
             ),
-            child: Text(text),
+            child: Text(text, style: TextStyle(color: Colors.white),),
           ),
         ),
       ],

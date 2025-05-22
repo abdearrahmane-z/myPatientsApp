@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/core/notification/notify_service.dart';
 import 'package:my_patients/view/home/HomePage.dart';
-import 'package:my_patients/view/patients_page/patients_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:my_patients/view/loginPage/login_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'My Patients',
           theme: ThemeData(primarySwatch: Colors.blue),
-          home: Home(),
+          home: LoginPage(),
         );
       },
     );

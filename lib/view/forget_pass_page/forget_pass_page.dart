@@ -21,44 +21,58 @@ class ForgetPassPage extends StatelessWidget {
           title: Text("Mot de passe oublié", style: AppTextStyles.appBarText),
           backgroundColor: AppColors.appBarColor,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 700),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  Text(
-                    "Entrez votre email pour envoyer un lien de réinitialisation de mot de passe",
-                    style: AppTextStyles.detailText,
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: heigh * 0.02),
-                  MyTextField(
-                    labelText: "Email",
-                    hintText: "Email",
-                    textController: controller.emailController,
-                    validator: InputValidator.validateEmail,
-                  ),
-                  SizedBox(height: heigh * 0.02),
-                  Obx(
-                    () =>
-                        controller.isLoading.value
-                            ? CircularProgressIndicator()
-                            : MyButton(
-                              text: "Envoyer",
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  controller.recoverPassword(context);
-                                }
-                              },
-                            ),
-                  ),
-                ],
+        body: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                'assets/images/bg1.jpg', // Make sure this path is correct and added in pubspec.yaml
+                fit: BoxFit.cover,
               ),
             ),
-          ),
+            Center(
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                margin: const EdgeInsets.all(10),
+                constraints: BoxConstraints(maxWidth: 700),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Entrez votre email pour envoyer un lien de réinitialisation de mot de passe",
+                        style: AppTextStyles.detailText,
+                        textAlign: TextAlign.center,
+                        
+                      ),
+                      SizedBox(height: heigh * 0.02),
+                      MyTextField(
+                        labelText: "Email",
+                        hintText: "Email",
+                        textController: controller.emailController,
+                        validator: InputValidator.validateEmail,
+                      ),
+                      SizedBox(height: heigh * 0.02),
+                      Obx(
+                        () =>
+                            controller.isLoading.value
+                                ? CircularProgressIndicator()
+                                : MyButton(
+                                  text: "Envoyer",
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      controller.recoverPassword(context);
+                                    }
+                                  },
+                                ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

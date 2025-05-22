@@ -25,7 +25,7 @@ class AppTextStyles {
     static TextStyle detailText = TextStyle(
         fontFamily: 'Ancizar',
         fontSize: 20.spMin,
-        color: Colors.black,
+        color: Colors.white,
       );
   static TextStyle paragraph = TextStyle(
         fontFamily: 'Ancizar',

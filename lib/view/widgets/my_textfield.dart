@@ -21,6 +21,7 @@ class MyTextField extends StatelessWidget {
     return TextFormField(
       controller: textController,
       decoration: InputDecoration(
+        filled: true,
         labelText: labelText,
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.grey),

@@ -29,15 +29,14 @@ class LoginForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
         margin: const EdgeInsets.all(30),
         decoration: BoxDecoration(
-          color: AppColors.authFormColor.withOpacity(0.8),
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromARGB(101, 0, 0, 0),
-              spreadRadius: 1,
-              blurRadius: 10,
-              offset: const Offset(0, 0),
-            ),
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Color.fromARGB(101, 0, 0, 0),
+          //     spreadRadius: 1,
+          //     blurRadius: 10,
+          //     offset: const Offset(0, 0),
+          //   ),
+          // ],
           borderRadius: BorderRadius.circular(15),
         ),
         child: Form(
@@ -70,7 +69,7 @@ class LoginForm extends StatelessWidget {
                   },
                   child: Text(
                     'Mot de passe oublié ?',
-                    style: TextStyle(color: Colors.blue),
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
               ),
@@ -93,7 +92,7 @@ class LoginForm extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Vous n\'avez pas de compte ?'),
+                  Text('Vous n\'avez pas de compte ?', style: TextStyle(color: Colors.white),),
                   GestureDetector(
                     onTap: () {
                       // print('Sign Up tapped');
