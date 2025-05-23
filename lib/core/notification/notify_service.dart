@@ -44,7 +44,7 @@ class NotifyService {
   }
 
   //show notification
-  Future<void> showNotify({int id = 0, String? title, String? body}) async {
+  Future<void> showNotify({ id = 0, String? title, String? body}) async {
     return flutterLocalNotificationsPlugin.show(
       id,
       title,
@@ -53,24 +53,24 @@ class NotifyService {
     );
   }
 
-  //instence
-  final _firebaseNotify = FirebaseMessaging.instance;
-  // init notify
-  Future<void> initNotify() async {
-    await _firebaseNotify.requestPermission();
-    String? token = await _firebaseNotify.getToken();
-    print(token);
-    handleBackgroundNotify();
-  }
+  // //instence
+  // final _firebaseNotify = FirebaseMessaging.instance;
+  // // init notify
+  // Future<void> initNotify() async {
+  //   await _firebaseNotify.requestPermission();
+  //   String? token = await _firebaseNotify.getToken();
+  //   print(token);
+  //   handleBackgroundNotify();
+  // }
 
-  //handle notify
-  void handleMessage(RemoteMessage? message) {
-    message.isNull ? print("") : Get.to(() => NotifyPage());
-  }
+  // //handle notify
+  // void handleMessage(RemoteMessage? message) {
+  //   message.isNull ? print("") : Get.to(() => NotifyPage());
+  // }
 
-  //handle background run
-  Future handleBackgroundNotify() async {
-    FirebaseMessaging.instance.getInitialMessage().then(handleMessage);
-    FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);
-  }
+  // //handle background run
+  // Future handleBackgroundNotify() async {
+  //   FirebaseMessaging.instance.getInitialMessage().then(handleMessage);
+  //   FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);
+  // }
 }

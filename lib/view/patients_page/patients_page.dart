@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/patients_List_controller.dart';
-import 'package:my_patients/view/widgets/custom_appBar.dart';
 import 'package:my_patients/view/patients_page/widgets/itemForm.dart';
 
 import '../../core/constants/colors.dart';

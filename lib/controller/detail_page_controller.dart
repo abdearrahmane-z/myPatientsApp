@@ -1,21 +1,23 @@
 import 'package:get/get.dart';
+import 'package:my_patients/controller/patients_List_controller.dart';
+import 'package:my_patients/controller/user_controller.dart';
 import 'package:my_patients/model/patients_data.dart';
 
 class DetailPageController extends GetxController {
   RxDouble rlTension = 0.0.obs;
   RxMap<dynamic, dynamic> historique = {}.obs;
   Map<String, dynamic> data = {};
+  UserContrller user = Get.find();
 
   listentToPatient(String id) {
-    Patient.testStream(id).listen((result) {
+    Patient.testStream(id, user.userID).listen((result) {
       data = result;
       var patienJson = data["data"];
       if (patienJson["data"] != {}) {
         patienJson["id"] = id;
         Patient patient = Patient.fromJson(patienJson);
         rlTension.value = patient.tension;
-        historique.value = patient.historique == ""?{}:patient.historique;
-
+        historique.value = patient.historique == "" ? {} : patient.historique;
       }
     });
   }

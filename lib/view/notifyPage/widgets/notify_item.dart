@@ -20,7 +20,7 @@ class NotifyWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         Map<String, dynamic> dictPatient = Map<String, dynamic>.from(
-          homeController.data[notification.id] as Map,
+          homeController.data[notification.patientID] as Map,
         );
         Patient patient = Patient.fromJson(dictPatient);
         print(patient.id);

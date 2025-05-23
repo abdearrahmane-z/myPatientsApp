@@ -54,7 +54,7 @@ class HistoriqueWidget extends StatelessWidget {
                                 Expanded(flex: 2,
                                   child: Text(
                                     'Tension: ${data[key]['tension']}',
-                                    style: AppTextStyles.detailTitle,
+                                    style: AppTextStyles.detailTitle2,
                                   ),
                                 ),
                                 Expanded(flex: 2,
@@ -64,12 +64,12 @@ class HistoriqueWidget extends StatelessWidget {
                                     children: [
                                       Text(
                                         formattedDate,
-                                        style: AppTextStyles.detailSubtitle,
+                                        style: AppTextStyles.detailSubtitle2,
                                       ),
                                       SizedBox(height: 4.h),
                                       Text(
                                         formattedTime,
-                                        style: AppTextStyles.detailSubtitle,
+                                        style: AppTextStyles.detailSubtitle2,
                                       ),
                                     ],
                                   ),

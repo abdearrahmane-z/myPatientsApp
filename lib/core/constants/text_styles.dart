@@ -40,10 +40,23 @@ class AppTextStyles {
         color: AppColors.secondaryColor,
         fontWeight: FontWeight.w300
       );
+
+  static TextStyle detailTitle2 = TextStyle(
+        fontFamily: 'Ancizar',
+        fontSize: 20.spMin,
+        color: Colors.black,
+        fontWeight: FontWeight.w300
+      );
   static TextStyle detailSubtitle = TextStyle(
         fontFamily: 'Ancizar',
         fontSize: 15.spMin,
         color: AppColors.secondaryColor,
+        fontWeight: FontWeight.w300
+      );
+  static TextStyle detailSubtitle2 = TextStyle(
+        fontFamily: 'Ancizar',
+        fontSize: 15.spMin,
+        color: Colors.black,
         fontWeight: FontWeight.w300
       );
 

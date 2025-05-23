@@ -19,7 +19,6 @@ class DetailPage extends StatelessWidget {
     DetailPageController controller = Get.put(DetailPageController());
     controller.listentToPatient(patient!.id);
 
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -31,14 +30,10 @@ class DetailPage extends StatelessWidget {
                 height: 40,
               ),
               const SizedBox(width: 10),
-              Text(
-                "Mon patient",
-                style: AppTextStyles.appBarText,
-              ),
+              Text("Mon patient", style: AppTextStyles.appBarText),
             ],
           ),
           backgroundColor: AppColors.appBarColor,
-        
         ),
         body: Align(
           alignment: Alignment.topCenter,
@@ -48,8 +43,8 @@ class DetailPage extends StatelessWidget {
               child: Container(
                 constraints: BoxConstraints(maxWidth: 700),
                 width: double.infinity,
-                child: Obx(
-                  () => Column(
+                child: Obx(() {
+                  return Column(
                     children: [
                       UserInfoWidget(
                         screenHeight: screenHeight,
@@ -62,8 +57,8 @@ class DetailPage extends StatelessWidget {
                         data: controller.historique.cast<String, dynamic>(),
                       ),
                     ],
-                  ),
-                ),
+                  );
+                }),
               ),
             ),
           ),

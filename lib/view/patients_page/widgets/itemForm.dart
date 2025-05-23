@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:my_patients/controller/user_controller.dart';
 import 'package:my_patients/core/constants/colors.dart';
 import 'package:my_patients/core/fonctions/show_message.dart';
 import 'package:my_patients/model/patients_data.dart';
@@ -13,6 +15,7 @@ class ItemForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserContrller user = Get.find();
     return InkWell(
       onTap: () {
         Get.to(
@@ -39,13 +42,18 @@ class ItemForm extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(child: Icon(Icons.person, size: 50.spMin, color: AppColors.secondaryColor,)),
+            Expanded(
+              child: Icon(
+                Icons.person,
+                size: 50.spMin,
+                color: AppColors.secondaryColor,
+              ),
+            ),
             const SizedBox(width: 10),
             Expanded(
               flex: 3,
               child: ListTile(
                 title: Text(
-                  
                   '${patient.name} ${patient.lastName}',
                   style: TextStyle(
                     color: AppColors.secondaryColor,
@@ -90,11 +98,11 @@ class ItemForm extends StatelessWidget {
                       ),
                 );
                 if (confirm == true) {
-                  final success = await Patient.removePatient(patient.id);
+                  final success = await Patient.removePatient(patient, user.userID);
                   if (success) {
-                    ShowMessage.show(con_text, "Patient removed", Colors.green);
+                    ShowMessage.show(con_text, "Supprimé avec succès", Colors.green);
                   } else {
-                    ShowMessage.show(con_text, "Failed to remove", Colors.red);
+                    ShowMessage.show(con_text, "erreur supprimer le patient", Colors.red);
                   }
                 }
               },
