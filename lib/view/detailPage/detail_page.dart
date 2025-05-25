@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/detail_page_controller.dart';
 import 'package:my_patients/core/constants/colors.dart';
@@ -18,7 +19,8 @@ class DetailPage extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     DetailPageController controller = Get.put(DetailPageController());
     controller.listentToPatient(patient!.id);
-
+    final RxBool showAncienne = false.obs;
+    final RxBool showHistorique = false.obs;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -33,6 +35,19 @@ class DetailPage extends StatelessWidget {
               Text("Mon patient", style: AppTextStyles.appBarText),
             ],
           ),
+          actions: [
+            Obx(
+              () => IconButton(
+                onPressed: () {
+                  controller.onEditiPatinet();
+                },
+                icon: Icon(
+                  controller.edit.value ? Icons.save : Icons.edit,
+                  color: AppColors.secondaryColor,
+                ),
+              ),
+            ),
+          ],
           backgroundColor: AppColors.appBarColor,
         ),
         body: Align(
@@ -46,6 +61,8 @@ class DetailPage extends StatelessWidget {
                 child: Obx(() {
                   return Column(
                     children: [
+                      controller.rlTension.value==[] ?
+                      Container():Container(),
                       UserInfoWidget(
                         screenHeight: screenHeight,
                         patient: patient,
@@ -53,8 +70,31 @@ class DetailPage extends StatelessWidget {
                       SizedBox(height: screenHeight * 0.02),
                       RealTimeValue(tension: controller.rlTension.value),
                       SizedBox(height: screenHeight * 0.02),
-                      HistoriqueWidget(
-                        data: controller.historique.cast<String, dynamic>(),
+
+                      // Ancienne mesures tab
+                      Obx(
+                        () => HistoriqueWidget(
+                          color: Colors.blue,
+                          data: controller.historiqueTension,
+                          title: "Ancienne mesures",
+                          show: showAncienne.value,
+                          onPresse: () {
+                            showAncienne.value = !showAncienne.value;
+                            print(showAncienne.value);
+                          },
+                        ),
+                      ),
+
+                      Obx(
+                        () => HistoriqueWidget(
+                          color: Colors.red,
+                          data: controller.historiquePics,
+                          title: "Historique de pics",
+                          show: showHistorique.value,
+                          onPresse: () {
+                            showHistorique.value = !showHistorique.value;
+                          },
+                        ),
                       ),
                     ],
                   );

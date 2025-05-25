@@ -7,9 +7,8 @@ class Patient {
   String id;
   int age;
   String gender;
-  double tension;
+  var tension;
   String antecedent;
-
   var historique;
 
   Patient({
@@ -25,14 +24,14 @@ class Patient {
 
   factory Patient.fromJson(Map<String, dynamic> json) {
     return Patient(
-      name: json['name'],
-      lastName: json['lastName'],
-      id: json['id'],
-      age: json['age'],
-      gender: json['gender'],
-      antecedent: json['antecedent'],
-      tension: json['RLTtension'].toDouble(),
-      historique: json['historique'],
+      name: json['name']?? "",
+      lastName: json['lastName']?? "",
+      id: json['id']?? "",
+      age: json['age']?? 0,
+      gender: json['gender']?? "",
+      antecedent: json['antecedent']?? "",
+      tension: json['RLTtension']?? {},
+      historique: json['historique'] ?? {},
     );
   }
   static List<Patient> listPatients(Map<String, dynamic> json) {
@@ -44,21 +43,23 @@ class Patient {
   }
 
   //get data from firebase
-  static Stream<Map<String, dynamic>> getData(String userID) {
-    final ref = FirebaseDatabase.instance.ref('users/$userID/patients');
-    return ref.onValue.map((event) {
-      if (event.snapshot.exists) {
-        final data = Map<String, dynamic>.from(event.snapshot.value as Map);
-        // Reverse to show last added first
-        final reversedEntries = data.entries.toList().reversed;
-        final reversedMap = {for (var e in reversedEntries) e.key: e.value};
-        print(reversedMap);
-        return {"status": "success", "data": reversedMap, "message": ""};
-      } else {
-        return {"status": "error", "data": {}, "message": "No patients found"};
-      }
-    });
-  }
+static Stream<Map<String, dynamic>> getData(String userID) {
+  final ref = FirebaseDatabase.instance.ref('users/$userID/patients');
+  return ref.onValue.map((event) {
+    if (event.snapshot.exists) {
+      final data = Map<String, dynamic>.from(event.snapshot.value as Map);
+      // print(data);
+      // Reverse to show last added first
+      final reversedEntries = data.entries.toList()
+        ..sort((a, b) => b.key.compareTo(a.key));
+        // print(reversedEntries); 
+      final reversedMap = {for (var e in reversedEntries) e.key: e.value};
+      return {"status": "success", "data": reversedMap, "message": ""};
+    } else {
+      return {"status": "error", "data": {}, "message": "No patients found"};
+    }
+  });
+}
 
   static Future<bool> addPatient({
     required String userID,
@@ -77,7 +78,7 @@ class Patient {
         "age": age,
         "gender": sexe,
         "antecedent": antecedent,
-        "RLTtension": 0,
+        "RLTtension": "",
         "historique": "",
       });
       return true;
@@ -90,11 +91,15 @@ class Patient {
   static Future<bool> removePatient(Patient patient, userID) async {
     final databaseRef = FirebaseDatabase.instance.ref();
     try {
-      await Notify.removeNotificationsForHistorique(userID: userID, patient: patient);
+      await Notify.removeNotificationsForHistorique(
+        userID: userID,
+        patient: patient,
+      );
       await databaseRef
           .child("users/$userID/patients")
           .child(patient.id)
           .remove();
+      
       return true;
     } catch (error) {
       print('Error removing patient: $error');
@@ -102,7 +107,7 @@ class Patient {
     }
   }
 
-  static Stream<Map<String, dynamic>> testStream(String patientId, userID) {
+  static Stream<Map<String, dynamic>> listenToPatient(String patientId, userID) {
     final ref = FirebaseDatabase.instance.ref(
       'users/$userID/patients/$patientId',
     );
@@ -116,17 +121,44 @@ class Patient {
     });
   }
 
+  static Stream<Map<String, dynamic>> listenToPatientTension(
+      String patientId, String userID) {
+    final ref = FirebaseDatabase.instance.ref(
+      'users/$userID/patients/$patientId/RLTtension',
+    ).orderByKey();
+    return ref.onValue.map((event) {
+      if (event.snapshot.exists) {
+        if (event.snapshot.value is Map) {
+          final data = Map<String, dynamic>.from(event.snapshot.value as Map);
+          // print(data);
+          // Reverse to show last added first
+          final reversedEntries = data.entries.toList()
+            ..sort((a, b) => b.key.compareTo(a.key));
+            // print(reversedEntries); 
+          final reversedMap = {for (var e in reversedEntries) e.key: e.value};
+          // final tensionData = Map<String, dynamic>.from(event.snapshot.value as Map);
+          return {"status": "success", "data": reversedMap, "message": ""};
+        } else {
+          return {"status": "error", "data": {}, "message": "Tension data is not in the expected format"};
+        }
+      } else {
+        return {"status": "error", "data": {}, "message": "No tension data found"};
+      }
+    });
+  }
+
   static Future<bool> addHistorique({
     required Patient patient,
     required String key,
     required String userID,
+    required double tension,
   }) async {
     try {
       final ref = FirebaseDatabase.instance.ref(
         'users/$userID/patients/${patient.id}/historique',
       );
 
-      await ref.child(key).set({"tension": patient.tension});
+      await ref.child(key).set({"tension": tension});
       return true;
     } catch (e) {
       print('Error adding historique: $e');

@@ -13,7 +13,6 @@ class AddPatient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
     AddPatientController controller = Get.put(AddPatientController());
     return SafeArea(
       child: Scaffold(
@@ -34,15 +33,17 @@ class AddPatient extends StatelessWidget {
           ),
           backgroundColor: AppColors.appBarColor,
         ),
-        body: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 700),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.all(20.spMin),
-                child: AddPatientForm(formKey: _formKey, controller: controller),
+        body: Center(
+          child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 700),
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.all(20.spMin),
+                  child: AddPatientForm(formKey: _formKey, controller: controller),
+                ),
               ),
             ),
-          ),
+        ),
       ),
     );
   }

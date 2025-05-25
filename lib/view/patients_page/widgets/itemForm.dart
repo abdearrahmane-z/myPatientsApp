@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 import 'package:my_patients/controller/user_controller.dart';
 import 'package:my_patients/core/constants/colors.dart';
 import 'package:my_patients/core/fonctions/show_message.dart';
@@ -98,11 +97,23 @@ class ItemForm extends StatelessWidget {
                       ),
                 );
                 if (confirm == true) {
-                  final success = await Patient.removePatient(patient, user.userID);
+                  final success = await Patient.removePatient(
+                    patient,
+                    user.userID,
+                  );
+
                   if (success) {
-                    ShowMessage.show(con_text, "Supprimé avec succès", Colors.green);
+                    showGlobalSnackBar(
+                      con_text,
+                      "Supprimé avec succès",
+                      Colors.green,
+                    );
                   } else {
-                    ShowMessage.show(con_text, "erreur supprimer le patient", Colors.red);
+                    showGlobalSnackBar(
+                      con_text,
+                      "erreur supprimer le patient",
+                      Colors.red,
+                    );
                   }
                 }
               },

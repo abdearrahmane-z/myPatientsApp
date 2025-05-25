@@ -37,7 +37,7 @@ class PatientsPage extends StatelessWidget {
           child: Container(
             constraints: BoxConstraints(maxWidth: 700),
             child: Obx(
-      () => controller.isLoading.value
+          () => controller.isLoading.value
           ? Center(child: CircularProgressIndicator())
           : controller.patients.isEmpty
               ? Center(

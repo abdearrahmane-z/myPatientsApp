@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:my_patients/controller/patients_List_controller.dart';
 import 'package:my_patients/controller/user_controller.dart';
 import 'package:my_patients/core/fonctions/show_message.dart';
-import 'package:my_patients/core/notification/notify_service.dart';
 import 'package:my_patients/model/patients_data.dart';
 import 'package:my_patients/view/home/HomePage.dart';
 
@@ -34,12 +33,11 @@ class AddPatientController extends GetxController {
     )) {
       isLoading.value = false;
       // ignore: use_build_context_synchronously
-      ShowMessage.show(context, "Patient ajouté avec succès", Colors.green);
-      hcontroller.loadPatients();
-      Get.offAll(() => Home());
+      showGlobalSnackBar(context, "Patient ajouté avec succès", Colors.green);
+      Get.off(() => Home());
     } else {
       isLoading.value = false;
-      ShowMessage.show(context, "Échec de l'ajout du patient", Colors.red);
+      showGlobalSnackBar(context, "Échec de l'ajout du patient", Colors.red);
     }
   }
 }

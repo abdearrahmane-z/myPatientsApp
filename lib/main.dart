@@ -1,9 +1,7 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/core/notification/notify_service.dart';
-import 'package:my_patients/view/home/HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:my_patients/view/loginPage/login_page.dart';
 import 'firebase_options.dart';

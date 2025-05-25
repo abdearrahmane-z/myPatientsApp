@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_patients/controller/patients_List_controller.dart';
+import 'package:my_patients/controller/analyse_tension_controller.dart';
 import 'package:my_patients/controller/user_controller.dart';
 import 'package:my_patients/view/home/HomePage.dart';
 import 'package:my_patients/view/loginPage/login_page.dart';
@@ -33,7 +33,8 @@ class AuthController extends GetxController {
       isLoading.value = false;
 
       Get.off(() => Home());
-    } on FirebaseAuthException catch (e) {
+      Get.put(AnalyseTensionController());
+    } on FirebaseAuthException catch (_) {
       isLoading.value = false;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -63,7 +64,7 @@ class AuthController extends GetxController {
         ),
       );
       Get.off(() => LoginPage());
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (_) {
       isLoading.value = false;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -103,7 +104,7 @@ class AuthController extends GetxController {
         ),
       );
       Get.off(() => LoginPage());
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (_) {
       isLoading.value = false;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

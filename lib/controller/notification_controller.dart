@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
-import 'package:my_patients/controller/patients_List_controller.dart';
 import 'package:my_patients/controller/user_controller.dart';
-import 'package:my_patients/core/notification/notify_service.dart';
 import 'package:my_patients/model/notify_data.dart';
 
 class NotificationController extends GetxController {
