@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/user_controller.dart';
@@ -12,6 +15,7 @@ class DetailPageController extends GetxController {
   Map<String, dynamic> data = {};
   UserContrller user = Get.find();
   late Patient patient;
+  late StreamSubscription<Map<String, dynamic>> _subscription;
 
   //init textController
   final TextEditingController name = TextEditingController();
@@ -20,7 +24,7 @@ class DetailPageController extends GetxController {
   final TextEditingController antecedent = TextEditingController();
 
   listenToPatient({required String id}) {
-    Patient.listenToPatient(id, user.userID).listen((result) {
+    _subscription = Patient.listenToPatient(id, user.userID).listen((result) {
       // data = result;
       var patienJson = result["data"];
       if (patienJson["data"] != {}) {
@@ -37,7 +41,7 @@ class DetailPageController extends GetxController {
         // get hitsorique tension
         if (patient.tension != null && patient.tension is Map && patient.tension.isNotEmpty) {
           data = Map<String, dynamic>.from(patient.tension as Map);
-          print(data);
+          // print(data);
           historiqueTension.value = HistoriqueItem.getHistoriquesList(data);
           rlTension.value = historiqueTension.first.tension;
         }
@@ -98,4 +102,13 @@ class DetailPageController extends GetxController {
   //     _state.isLoading.value = false;
   //   }
   // }
+  @override
+  void onClose() {
+    _subscription.cancel();
+    name.dispose();
+    lastName.dispose();
+    age.dispose();
+    antecedent.dispose();
+    super.onClose();
+  }
 }

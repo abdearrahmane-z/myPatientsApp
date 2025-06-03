@@ -60,7 +60,7 @@ Widget build(BuildContext context) {
                   GestureDetector(
                     onTap: () {
                       // print('Sign Up tapped');
-                      Get.offAll(() => LoginPage());
+                      Get.off(() => LoginPage());
                       controller.code.clear();
                     },
                     child: const Text(

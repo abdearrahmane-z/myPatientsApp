@@ -117,7 +117,7 @@ class LoginForm extends StatelessWidget {
               SizedBox(height: screenHeight * 0.02),
               TextButton(
                 onPressed: () {
-                  Get.to(() => PatientLogin());
+                  Get.off(() => PatientLogin());
                 },
                 child: const Text(
                   'Patient Login',

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:my_patients/controller/user_controller.dart';
 import 'package:my_patients/core/data_analyse/data_analyse.dart';
@@ -10,6 +12,7 @@ class AnalyseTensionController extends GetxController {
   UserContrller user = Get.find();
   double tension = 0.0;
   List<Patient> listeningPatients = [];
+  late StreamSubscription<Map<String, dynamic>> _subscription;
 
   void analyseTension(Patient patient, int index) async {
     // Listen to changes for this patient
@@ -20,7 +23,7 @@ class AnalyseTensionController extends GetxController {
     }
     print("Listening to patient: ${patient.name}");
     listeningPatients.add(patient);
-    Patient.listenToPatientTension(patient.id, user.userID).listen((
+    _subscription = Patient.listenToPatientTension(patient.id, user.userID).listen((
       result,
     ) async {
       var rlTension = result["data"];
@@ -64,5 +67,12 @@ class AnalyseTensionController extends GetxController {
       }
     
     });
+  }
+  @override
+  void onClose() {
+    // Cancel the subscription when the controller is closed
+    _subscription.cancel();
+    listeningPatients.clear();
+    super.onClose();
   }
 }

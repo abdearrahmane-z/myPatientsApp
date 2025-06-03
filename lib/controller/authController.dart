@@ -92,7 +92,7 @@ class AuthController extends GetxController {
           Patient patient = Patient.fromJson(patientInfo);
           user.userID = userID;
 
-          Get.to(() => DetailPage(patient: patient, isFromHome: false));
+          Get.offAll(() => DetailPage(patient: patient, isFromHome: false));
           isLoading.value = false;
           AnalyseTensionController controller = Get.put(AnalyseTensionController());
           controller.analyseTension(patient, 0);
