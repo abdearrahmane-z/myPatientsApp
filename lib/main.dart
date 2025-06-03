@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_patients/core/constants/constant.dart';
 import 'package:my_patients/core/notification/notify_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:my_patients/view/loginPage/login_page.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Mes Patients',
+          title: appName,
           theme: ThemeData(primarySwatch: Colors.blue),
           home: LoginPage(),
         );
