@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:my_patients/controller/authController.dart';
 import 'package:my_patients/core/constants/constant.dart';
-import 'package:my_patients/view/signUpPage/widgets/signUp_from.dart';
+import 'package:my_patients/view/patient_login/widget/patient_form_login.dart';
 
-class SignUpPage extends StatelessWidget {
-  // Renamed HomePage to SignUpPage
-  SignUpPage({super.key});
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+class PatientLogin extends StatelessWidget {
+  const PatientLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
-    AuthController controllerA = Get.put(AuthController());
     double screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.white,
         body: Stack(
           children: [
             Positioned.fill(
@@ -38,14 +32,15 @@ class SignUpPage extends StatelessWidget {
                     Text(
                       appName,
                       style: TextStyle(
+                        
                         color: Colors.white,
-                        fontSize: 50.spMin,
+                        fontSize: 50,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Italianno',
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.05),
-                    SignUpForm(formKey: _formKey,controller: controllerA,),
+                    PatientFormLogin(),
                   ],
                 ),
               ),

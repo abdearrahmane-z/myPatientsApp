@@ -8,4 +8,5 @@ class AppColors {
   static const Color authFormColor = Colors.white;
   static const Color icon = Colors.white;
   static const Color inputColor = Colors.white;
+  static const Color hintColor = Color.fromARGB(255, 0, 0, 0);
 }

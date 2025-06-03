@@ -1,5 +1,5 @@
 class DataAnalyse {
-  static const maxTension = 200;
-  static const minTension = 50;
+  static const maxTension = 140;
+  // static const minTension = 50;
 
 }

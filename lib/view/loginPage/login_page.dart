@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/authController.dart';
+import 'package:my_patients/core/constants/constant.dart';
 import 'package:my_patients/view/loginPage/widgets/login_form.dart';
 
 class LoginPage extends StatelessWidget {
@@ -33,7 +34,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     SizedBox(height: screenHeight * 0.02),
                     Text(
-                      "Mes Patients",
+                      appName,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 50,
@@ -43,6 +44,8 @@ class LoginPage extends StatelessWidget {
                     ),
                     SizedBox(height: screenHeight * 0.05),
                     LoginForm(formKey: _formKey, controller: controllerA, context: context),
+                    
+
                   ],
                 ),
               ),

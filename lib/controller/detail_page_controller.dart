@@ -19,8 +19,7 @@ class DetailPageController extends GetxController {
   final TextEditingController age = TextEditingController();
   final TextEditingController antecedent = TextEditingController();
 
-  listentToPatient(String id) {
-    
+  listenToPatient({required String id}) {
     Patient.listenToPatient(id, user.userID).listen((result) {
       // data = result;
       var patienJson = result["data"];

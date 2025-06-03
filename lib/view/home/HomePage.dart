@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/patients_List_controller.dart';
 import 'package:my_patients/core/constants/colors.dart';
+import 'package:my_patients/core/constants/constant.dart';
 import 'package:my_patients/core/constants/text_styles.dart';
 import 'package:my_patients/view/add_patient/add_patient.dart';
 import 'package:my_patients/view/loginPage/login_page.dart';
@@ -27,7 +28,7 @@ class Home extends StatelessWidget {
                 height: 40,
               ),
               const SizedBox(width: 10),
-              Text("Mes patients", style: AppTextStyles.appBarText),
+              Text(appName, style: AppTextStyles.appBarText),
             ],
           ),
           backgroundColor: AppColors.appBarColor,

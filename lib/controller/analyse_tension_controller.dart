@@ -34,8 +34,7 @@ class AnalyseTensionController extends GetxController {
                 : {};
         print("Last Tension: $lastTension");
         tension = lastTension.values.first["tension"].toDouble();
-        if (0 < tension && tension < DataAnalyse.minTension ||
-            tension > DataAnalyse.maxTension) {
+        if (tension > DataAnalyse.maxTension) {
           // Generate key in the required format
           final key = lastTension.keys.first;
           // print("Key: $key");

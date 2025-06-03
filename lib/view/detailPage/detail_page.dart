@@ -5,20 +5,22 @@ import 'package:my_patients/controller/detail_page_controller.dart';
 import 'package:my_patients/core/constants/colors.dart';
 import 'package:my_patients/core/constants/text_styles.dart';
 import 'package:my_patients/model/patients_data.dart';
+import 'package:my_patients/view/loginPage/login_page.dart';
 
 import 'widgets/historique.dart';
 import 'widgets/real_time_value.dart';
 import 'widgets/user_info.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({super.key, this.patient});
+  const DetailPage({super.key, this.patient, this.isFromHome = true});
   final Patient? patient;
+  final bool isFromHome;
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     DetailPageController controller = Get.put(DetailPageController());
-    controller.listentToPatient(patient!.id);
+    controller.listenToPatient(id: patient!.id);
     final RxBool showAncienne = false.obs;
     final RxBool showHistorique = false.obs;
     return SafeArea(
@@ -36,6 +38,7 @@ class DetailPage extends StatelessWidget {
             ],
           ),
           actions: [
+            isFromHome?
             Obx(
               () => IconButton(
                 onPressed: () {
@@ -45,6 +48,15 @@ class DetailPage extends StatelessWidget {
                   controller.edit.value ? Icons.save : Icons.edit,
                   color: AppColors.secondaryColor,
                 ),
+              ),
+            ):
+            IconButton(
+              onPressed: () {
+                Get.offAll(LoginPage());
+              },
+              icon: Icon(
+                Icons.logout,
+                color: AppColors.secondaryColor,
               ),
             ),
           ],
@@ -63,6 +75,8 @@ class DetailPage extends StatelessWidget {
                     children: [
                       controller.rlTension.value==[] ?
                       Container():Container(),
+                      Text("${patient?.id}", style: AppTextStyles.detailTitle2),
+                      SizedBox(height: screenHeight * 0.02),
                       UserInfoWidget(
                         screenHeight: screenHeight,
                         patient: patient,

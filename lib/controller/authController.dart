@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_patients/controller/analyse_tension_controller.dart';
 import 'package:my_patients/controller/user_controller.dart';
+import 'package:my_patients/model/patients_data.dart';
+import 'package:my_patients/view/detailPage/detail_page.dart';
 import 'package:my_patients/view/home/HomePage.dart';
 import 'package:my_patients/view/loginPage/login_page.dart';
 
@@ -12,6 +14,7 @@ class AuthController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
+  final TextEditingController code = TextEditingController();
 
   RxBool isLoading = false.obs;
 
@@ -69,6 +72,51 @@ class AuthController extends GetxController {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("Échec de l'inscription"),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+  void patientLogin(BuildContext context) async {
+    isLoading.value = true;
+    final codeText = code.text.trim();
+    try {
+      final snapshot = await databaseRef.child("patients").child(codeText).get();
+      if (snapshot.exists) {
+        // Patient exists, get userID and patient data
+        final patientData = Map<String, dynamic>.from(snapshot.value as Map);
+        final userID = patientData["userID"];
+        final patientSnapshot = await databaseRef.child("users/$userID/patients/$codeText").get();
+        if (patientSnapshot.exists) {
+          final patientInfo = Map<String, dynamic>.from(patientSnapshot.value as Map);
+          Patient patient = Patient.fromJson(patientInfo);
+          user.userID = userID;
+
+          Get.to(() => DetailPage(patient: patient, isFromHome: false));
+          isLoading.value = false;
+          AnalyseTensionController controller = Get.put(AnalyseTensionController());
+          controller.analyseTension(patient, 0);
+        
+        }
+
+        }else {
+          // Patient does not exist
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Patient non trouvé"),
+              backgroundColor: Colors.red,
+            ),
+          );
+      }
+      isLoading.value = false;
+
+      // Get.off(() => Home());
+      // Get.put(AnalyseTensionController());
+    } on FirebaseAuthException catch (_) {
+      isLoading.value = false;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("La connexion a échoué"),
           backgroundColor: Colors.red,
         ),
       );

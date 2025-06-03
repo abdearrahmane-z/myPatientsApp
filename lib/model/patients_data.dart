@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:my_patients/model/notify_data.dart';
 
@@ -61,6 +63,11 @@ static Stream<Map<String, dynamic>> getData(String userID) {
   });
 }
 
+static String generateRandomCode(int length) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  final rand = Random.secure();
+  return List.generate(length, (index) => chars[rand.nextInt(chars.length)]).join();
+}
   static Future<bool> addPatient({
     required String userID,
     required String nom,
@@ -71,8 +78,11 @@ static Stream<Map<String, dynamic>> getData(String userID) {
   }) async {
     final databaseRef = FirebaseDatabase.instance.ref();
     try {
-      await databaseRef.child("users/$userID/patients").push().set({
-        "id": databaseRef.key,
+      String code1 = generateRandomCode(6);
+      String code2 = generateRandomCode(6);
+
+      await databaseRef.child("users/$userID/patients").child(code1+code2).set({
+        "id": code1+code2,
         "name": nom,
         "lastName": prenom,
         "age": age,
@@ -80,6 +90,11 @@ static Stream<Map<String, dynamic>> getData(String userID) {
         "antecedent": antecedent,
         "RLTtension": "",
         "historique": "",
+      });
+      await databaseRef.child("patients").child(code1+code2).set({
+        "password": code2,
+        "userID": userID,
+        "patientID": code1+code2,
       });
       return true;
     } catch (error) {
@@ -97,6 +112,10 @@ static Stream<Map<String, dynamic>> getData(String userID) {
       );
       await databaseRef
           .child("users/$userID/patients")
+          .child(patient.id)
+          .remove();
+      await databaseRef
+          .child("patients")
           .child(patient.id)
           .remove();
       

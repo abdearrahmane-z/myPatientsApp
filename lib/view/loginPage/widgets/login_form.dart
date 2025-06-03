@@ -8,6 +8,8 @@ import 'package:my_patients/view/signUpPage/signup_page.dart';
 import 'package:my_patients/view/widgets/my_button.dart';
 import 'package:my_patients/view/widgets/my_textfield.dart';
 
+import '../../patient_login/patient_login.dart';
+
 class LoginForm extends StatelessWidget {
   const LoginForm({
     super.key,
@@ -109,7 +111,24 @@ class LoginForm extends StatelessWidget {
                       ),
                     ),
                   ),
+                  
                 ],
+              ),
+              SizedBox(height: screenHeight * 0.02),
+              TextButton(
+                onPressed: () {
+                  Get.to(() => PatientLogin());
+                },
+                child: const Text(
+                  'Patient Login',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    decoration: TextDecoration.underline, 
+                    decorationColor: Colors.white,
+                  ),
+                ),
               ),
             ],
           ),
